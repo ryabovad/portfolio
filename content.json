@@ -1,0 +1,90 @@
+{
+  "name": "Даша Рябова",
+  "avatar": "images/avatar.jpg",
+  "hero": {
+    "titleLine1": "Продуктовый",
+    "titleLine2": "дизайнер",
+    "decoration": "🌻",
+    "description": "С опытом 3+ лет в мобильных приложениях и веб-интерфейсах. В решениях опираюсь на UX-исследования, гипотезы и продуктовые метрики.",
+    "tags": [
+      "B2C",
+      "B2B"
+    ]
+  },
+  "contacts": {
+    "telegram": "https://t.me/ryabovad",
+    "email": "mailto:daryaryabovaa@mail.ru",
+    "emailDisplay": "daryaryabovaa@mail.ru",
+    "hh": "",
+    "resume": "",
+    "telegramHandle": "@ryabovad"
+  },
+  "projects": [
+    {
+      "id": "fit-service",
+      "title": "Редизайн программы лояльности",
+      "company": "Nigma Software",
+      "period": "январь 2025 → сейчас",
+      "image": "images/projects/fit-service.jpg",
+      "imageAlt": "Мокапы FIT SERVICE",
+      "about": "FIT SERVICE — федеральная сеть из 346+ постгарантийных автосервисов. Через приложение записываются на ТО, смотрят историю обслуживания, пользуются программой лояльности.",
+      "role": "Была единственным продуктовым дизайнером в команде. Участвовала в процессе с момента сбора требований до выкатки в прод. Презентовала и защищала решения.",
+      "metricsBlocks": [
+        [
+          {
+            "label": "CR в запись в Бонусном счете",
+            "value": "+1.2%"
+          },
+          {
+            "label": "Общий CR в запись",
+            "value": "+0.2%"
+          }
+        ],
+        [
+          {
+            "label": "Retention Rate",
+            "value": "+ 3 %"
+          },
+          {
+            "label": "CSAT",
+            "value": "+1.2"
+          }
+        ]
+      ],
+      "url": "cases/fit-service.html"
+    },
+    {
+      "id": "discomarket",
+      "title": "Редизайн маркетплейса",
+      "company": "fact.digital",
+      "period": "ноябрь 2023 → декабрь 2024",
+      "image": "images/projects/discomarket.jpg",
+      "imageAlt": "Мокапы Дискомаркета",
+      "about": "Дискомаркет — это маркетплейс и каталогизатор для любителей музыки на физических носителях — виниле, CD и кассетах.",
+      "role": "Держала весь дизайн коммерческой части: от исследования до передачи в разработку и дизайн-ревью. Переосмыслила текущий UI и UX, создала бесшовный путь от покупки пластинки до её получения.",
+      "url": "cases/discomarket.html"
+    }
+  ],
+  "shots": [
+    {
+      "image": "images/shots/crypto.jpg",
+      "label": "Crypto App",
+      "size": "square"
+    },
+    {
+      "video": "images/shots/ecommerce.mp4",
+      "label": "E-commerce App",
+      "size": "tall"
+    },
+    {
+      "image": "images/shots/analytics.jpg",
+      "label": "Analytics Dashboard",
+      "size": "medium"
+    },
+    {
+      "video": "images/shots/tasks.mov",
+      "label": "Task Manager",
+      "size": "short"
+    }
+  ]
+}

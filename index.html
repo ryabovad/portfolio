@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <title>Даша Рябова — продуктовый дизайнер</title>
+  <meta name="description" content="Портфолио продуктового дизайнера Даши Рябовой. Мобильные приложения и веб-интерфейсы, опыт 3+ лет." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Шапка -->
+  <header class="header">
+    <div class="user">
+      <span class="user__avatar"><img src="" alt="" data-slot="avatar" /></span>
+      <p class="user__name" data-slot="name">&nbsp;</p>
+    </div>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-controls="menu" aria-expanded="false">
+      <img class="burger__icon burger__icon--open"  src="images/icons/burger.svg" alt="" width="24" height="24" />
+      <img class="burger__icon burger__icon--close" src="images/icons/close.svg"  alt="" width="24" height="24" />
+    </button>
+  </header>
+
+  <!-- Меню (выезжает только карточка, шапка остаётся) -->
+  <div class="menu" id="menu" hidden>
+    <div class="menu__backdrop" data-close-menu></div>
+    <div class="menu__card" role="dialog" aria-modal="true" aria-label="Контакты">
+      <a class="menu__link" data-link="hh"       target="_blank" rel="noopener">HH.ru</a>
+      <a class="menu__link" data-link="email"    data-slot="emailDisplay">&nbsp;</a>
+      <a class="menu__link" data-link="telegram" target="_blank" rel="noopener">Telegram</a>
+      <div class="menu__resume-wrap">
+        <a class="menu__resume chip" data-link="resume" target="_blank" rel="noopener" download>
+          Резюме
+          <img src="images/icons/download.svg" alt="" width="24" height="24" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Hero -->
+    <div class="hero-wrap" id="top">
+      <section class="hero">
+        <h1 class="hero__title">
+          <span class="hero__title-line" data-slot="titleLine1">&nbsp;</span>
+          <span class="hero__title-row">
+            <span class="hero__title-line" data-slot="titleLine2">&nbsp;</span>
+            <img class="hero__flower" src="images/icons/flower-m.svg" alt="" width="34" height="34" aria-hidden="true" />
+          </span>
+        </h1>
+        <p class="hero__description" data-slot="description">&nbsp;</p>
+        <div class="hero__tags" data-slot="tags"></div>
+      </section>
+    </div>
+
+    <!-- Проекты -->
+    <section class="section section--projects" id="projects" aria-label="Проекты">
+      <div class="section__list" data-slot="projects"></div>
+    </section>
+
+    <!-- UI шоты — заголовок в отдельном контейнере с px-20 -->
+    <div class="shots-heading" id="shots">
+      <h2>UI шоты</h2>
+    </div>
+    <div class="shots-container" data-slot="shots"></div>
+
+    <!-- Контакты -->
+    <section class="section section--contacts" id="contacts" aria-labelledby="contacts-title">
+      <p class="contacts-watermark" id="contacts-title">Свяжитесь со мной</p>
+      <div class="contacts-list">
+        <a class="contact-card" data-link="telegram" target="_blank" rel="noopener">
+          <span class="contact-card__text">
+            <span class="contact-card__label">Telegram</span>
+            <span class="contact-card__subtitle" data-slot="telegramHandle"></span>
+          </span>
+          <span class="contact-card__arrow">
+            <img src="images/icons/arrow-forward-m.svg" alt="" width="24" height="24" />
+          </span>
+        </a>
+        <a class="contact-card" data-link="hh" target="_blank" rel="noopener">
+          <span class="contact-card__text">
+            <span class="contact-card__label">HH.ru</span>
+          </span>
+          <span class="contact-card__arrow">
+            <img src="images/icons/arrow-forward-m.svg" alt="" width="24" height="24" />
+          </span>
+        </a>
+        <a class="contact-card" data-link="email">
+          <span class="contact-card__text">
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__subtitle" data-slot="emailDisplay"></span>
+          </span>
+          <span class="contact-card__arrow">
+            <img src="images/icons/arrow-forward-m.svg" alt="" width="24" height="24" />
+          </span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- common.js первым, main.js вторым -->
+  <script src="js/common.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

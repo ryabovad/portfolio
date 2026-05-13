@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <title>Дискомаркет: редизайн маркетплейса — Даша Рябова</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="case-header">
+    <a class="case-back" href="../index.html#projects" aria-label="Назад к проектам">
+      <img src="../images/icons/arrow-back.svg" alt="" width="24" height="24" />
+    </a>
+    <div class="user">
+      <span class="user__avatar"><img src="../images/avatar.jpg" alt="" /></span>
+      <p class="user__name">Даша Рябова</p>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="case-title">дискомаркет: редизайн маркетплейса</h1>
+
+    <div class="case-meta">
+      <div class="case-meta__row">
+        <span class="label">Роль</span>
+        <span class="value">UI/UX дизайнер</span>
+      </div>
+      <div class="case-meta__row">
+        <span class="label">Период</span>
+        <span class="value">Сентябрь 2022 — декабрь 2024</span>
+      </div>
+      <p class="case-meta__lead">Держала весь дизайн маркетплейса: от исследований до передачи в разработку и дизайн-ревью</p>
+    </div>
+
+    <!-- Hero — маркетплейс листинг -->
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/hero.png" alt="Маркетплейс Дискомаркет — страница листинга" loading="eager" />
+      </div>
+    </div>
+
+    <h3 class="case-h3 case-h3--tight">Контекст</h3>
+    <p class="case-p">В феврале 2021 начали развивать Дискомаркет — российскую альтернативу Discogs для коллекционеров винила и CD. К концу 2021 года запустили первый рабочий MVP: дискографии, сообщество и маркетплейс. На старте спрос был ограниченным, и команда уже сомневалась, стоит ли продолжать развитие продукта.</p>
+    <p class="case-p">В марте 2022 Discogs — главный конкурент Дискомаркета — ограничил доступ для российских пользователей. Коллекционеры, покупатели и продавцы лишились привычной площадки для купли-продажи. Аудитория начала искать альтернативы, и интерес к Дискомаркету заметно вырос: увеличились регистрации, размещение лотов и продажи. Однако вместе с ростом стало очевидно, что пользователи не удовлетворены некоторыми аспектами продукта — они жаловались на сложную навигацию, неудобный процесс купли-продажи, как следствие выходили с сайта, не завершали сделки или писали в поддержку. Тогда компания ООО «Квазар» обратилась в студию fact.digital за глобальным редизайном площадки.</p>
+
+    <h3 class="case-h3">Цель бизнеса</h3>
+    <div class="case-list"><ul>
+      <li>Увеличить оборот маркетплейса за счёт роста ключевых действий: размещения товаров, оформления заказов, завершённых сделок и повторных покупок.</li>
+      <li>Повысить удовлетворённость пользователей и снизить долю негативных отзывов.</li>
+      <li>Сократить обращения в поддержку.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Цель пользователя</h3>
+    <p class="case-p"><strong style="font-weight:800">Продавец:</strong> удобно разместить виниловые пластинки, найти заинтересованных покупателей и удобно управлять продажами.</p>
+    <p class="case-p"><strong style="font-weight:800">Покупатель:</strong> найти нужную пластинку, оценить её состояние и продавца, безопасно оформить заказ.</p>
+
+    <h3 class="case-h3">Задача</h3>
+    <p class="case-p">Провести UX-аудит, найти слабые места и сделать UX/UI-редизайн сайта: обновить визуальный стиль, унифицировать продуктовые страницы и заложить основу для масштабирования через UI Kit.</p>
+
+    <h3 class="case-h3">Аудитория</h3>
+    <p class="case-p">Продавцы и покупатели музыки на физических носителях.</p>
+
+    <!-- User flow — обзор масштаба проекта -->
+    <div class="case-media case-media--p24">
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/overview.png" alt="User flow: масштаб проекта Дискомаркет" loading="lazy" />
+      </div>
+    </div>
+
+    <h2 class="case-h2">Процесс</h2>
+
+    <h3 class="case-h3 case-h3--tight">Анализ</h3>
+    <div class="case-list"><ul>
+      <li>Составила скрин-флоу текущего сайта. В итоге получилось найти места, где нарушается логика и не учтены возможные сценарии.</li>
+      <li>Провела бенчмаркинг, чтобы посмотреть лучшие практики, понять общие черты у конкурентов, чтобы в концепте сохранить ожидаемые паттерны e-commerce направления для пользователей.</li>
+      <li>Собрала и проанализировала обращения в службу поддержки, а также жалобы и пожелания пользователей в Telegram-канале Дискомаркета. Это помогло выявить повторяющиеся проблемы.</li>
+      <li>Провела серию глубинных интервью с пользователями маркетплейса, чтобы изучить их workflow, лучше понять контекст использования продукта и выявить ключевые боли.</li>
+      <li>Провела опросы в Telegram-канале, чтобы проверить частотность выявленных проблем, чтобы потом приоритизировать их.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Проектирование</h3>
+    <div class="case-list"><ul>
+      <li>Построила CJM AS IS на основе исследований, чтобы отразить путь пользователя от первого касания до завершения сделки. Схема включала в себя этапы, действия, точки контакта, ожидания и мысли клиента, опыт клиента и эмоции.</li>
+      <li>Вместе с проджектом мы сформировали гипотезы для каждой проблемы и провели приоритизацию бэклога с командой: в первую очередь брали то, что легче разработать и на что чаще жаловались. Приоритизированные гипотезы распределяли по релизам в формате USM.</li>
+      <li>После CJM я описала идеальный сценарий клиента (CJM TO BE) и декомпозировала его на user flow.</li>
+      <li>Перед прототипами собрала и утвердила мудборд, затем применила выбранный стиль на ключевых экранах. Так мы быстро согласовали визуал и зафиксировали дизайн-концепт.</li>
+      <li>После отрисовки экранов я проверила решения на уровне прототипов и собрала обратную связь от лида.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Взаимодействие с командой</h3>
+    <div class="case-list"><ul>
+      <li>Обсуждала решения с лидом, проджектом и разработчиками.</li>
+      <li>Подготавливала макеты и описывала работу для передачи в разработку.</li>
+      <li>Презентовали дизайн-решения вместе с лидом и защищали их перед командой и бизнес-заказчиком.</li>
+    </ul></div>
+
+    <h2 class="case-h2">Финальные макеты</h2>
+
+    <!-- ============ #1 Минимальный заказ ============ -->
+    <h3 class="case-h3 case-h3--tight">#1. Новая фича: минимальный заказ</h3>
+
+    <div class="case-callout">
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/bad.svg" alt="" width="24" height="24" />
+          Проблема
+        </div>
+        <p class="case-callout__text">Продавцы вручную отменяют заказы ниже минимальной суммы и тратят время на объяснения. Покупатели при этом проходят оформление впустую.</p>
+      </div>
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/good.svg" alt="" width="24" height="24" />
+          Гипотеза
+        </div>
+        <p class="case-callout__text">Если добавить минимальную сумму заказа, покупатели не смогут оформить неподходящий заказ, а продавцы будут тратить меньше времени на ручные отмены.</p>
+      </div>
+    </div>
+
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-1-1.png" alt="Корзина с уведомлением о минимальной сумме заказа" loading="lazy" />
+      </div>
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-1-2.png" alt="Корзина с выбором товаров" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- ============ #2 Выбор товаров в корзине ============ -->
+    <h3 class="case-h3">#2. Новая логика выбора товаров в корзине</h3>
+
+    <div class="case-callout">
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/bad.svg" alt="" width="24" height="24" />
+          Проблема
+        </div>
+        <p class="case-callout__text">В корзине нельзя выбрать отдельные товары для заказа. Пользователям приходится удалять лишние позиции, а итоговая сумма выбранных товаров не видна до оформления.</p>
+      </div>
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/good.svg" alt="" width="24" height="24" />
+          Гипотеза
+        </div>
+        <p class="case-callout__text">Если добавить выбор товаров в корзине, сценарий станет привычнее и понятнее, снизится трение перед оформлением и вырастет конверсия в чекаут.</p>
+      </div>
+    </div>
+
+    <div class="case-beforeafter">
+      <div class="case-beforeafter__block">
+        <p class="case-beforeafter__label">До</p>
+        <div class="case-beforeafter__media">
+          <img src="../images/cases/discomarket/cart-before.png" alt="Корзина — старый дизайн без выбора товаров" loading="lazy" />
+        </div>
+      </div>
+      <div class="case-beforeafter__block">
+        <p class="case-beforeafter__label">После</p>
+        <div class="case-beforeafter__media">
+          <img src="../images/cases/discomarket/cart-after.png" alt="Корзина — новый дизайн с выбором товаров через чекбоксы" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ #3 Интеграция с ТК ============ -->
+    <h3 class="case-h3">#3. Новая фича: интеграция с транспортными компаниями</h3>
+
+    <div class="case-callout">
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/bad.svg" alt="" width="24" height="24" />
+          Проблема
+        </div>
+        <p class="case-callout__text">Покупатель оформлял заказ без доставки, а продавец вручную рассчитывал её стоимость и добавлял к заказу. Это замедляло оплату, нагружало продавцов, увеличивало риск ошибок и делало путь покупателя менее прозрачным.</p>
+      </div>
+      <div class="case-callout__item">
+        <div class="case-callout__head">
+          <img class="case-callout__icon" src="../images/icons/good.svg" alt="" width="24" height="24" />
+          Гипотеза
+        </div>
+        <p class="case-callout__text">Если интегрировать оформление с ТК и считывать доставку автоматически, покупатель сразу увидит итоговую стоимость и быстрее перейдёт к оплате, а продавцы будут меньше работать вручную.</p>
+      </div>
+    </div>
+
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-3-1.png" alt="Оформление заказа с выбором доставки" loading="lazy" />
+      </div>
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-3-2.png" alt="Карта пунктов выдачи — геолокация отключена" loading="lazy" />
+      </div>
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-3-3.png" alt="Карта пунктов выдачи с пинами СДЭК, Яндекс, Почта" loading="lazy" />
+      </div>
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-3-4.png" alt="Список заказов покупателя" loading="lazy" />
+      </div>
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/feature-3-5.png" alt="Детали заказа с треком доставки" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- ============ Ещё фичи ============ -->
+    <h3 class="case-h3">Ещё фичи</h3>
+    <div class="case-list">
+      <ul>
+        <li>Встроенный чат;</li>
+        <li>Возможность указать несколько адресов самовывоза;</li>
+        <li>Отзывы (разделение на табы: ждут отзыва, мои отзывы, отзывы обо мне);</li>
+        <li>Сортировка отзывов: по оценке, по дате;</li>
+        <li>Бейджи «скидка продавца» и «проверенный продавец»;</li>
+        <li>Информация о магазине;</li>
+        <li>Возможность увидеть, что применилась скидка продавца;</li>
+        <li>Возможность указать срок подготовки и хранения заказа;</li>
+        <li>Фильтры: только открытые магазины, только проверенные продавцы;</li>
+        <li>Тултипы, чтобы посмотреть, что значат состояния VG, Mint и т.д. в карточке товара;</li>
+        <li>Предпросмотр всех фото в карточке товара.</li>
+      </ul>
+      <p style="margin:8px 0 0;font-size:14px;line-height:22px">И многое другое.</p>
+    </div>
+
+    <!-- ============ UI Kit ============ -->
+    <h3 class="case-h3">UI Kit</h3>
+    <p class="case-p">Собирали токены сразу на переменных, это в разы ускорило проектирование. Для всех токенов вначале создавались примитивы, на основании которых уже строилась семантика.</p>
+
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/discomarket/ui-kit.png" alt="UI Kit Дискомаркета: инпуты, кнопки, модальные элементы" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- ============ Результаты ============ -->
+    <h3 class="case-h3">Результаты</h3>
+    <p class="case-p">После редизайна мы опубликовали форму и пользователи положительно оценили обновлённый интерфейс. Многие отметили, что интерфейс стал чище, компактнее и удобнее.</p>
+    <p class="case-p">Однако в первый месяц начали появляться жалобы на технические ошибки в новой версии. На момент моего ухода команда приняла решение временно откатить изменения и сфокусироваться на стабилизации редизайна.</p>
+
+    <!-- ============ Figma thumb ============ -->
+    <div class="case-figma-thumb">
+      <div class="case-figma-thumb__inner">
+        <img src="../images/cases/discomarket/figma.png" alt="Карточка товара Дискомаркета" />
+      </div>
+    </div>
+
+    <!-- ============ Outro ============ -->
+    <div class="case-outro-wrap">
+      <p class="case-outro">Буду рада подробнее рассказать о кейсе на собеседовании</p>
+      <div class="case-write">
+        <a class="case-write__btn" href="https://t.me/ryabovad" target="_blank" rel="noopener">
+          Написать
+          <img src="../images/icons/telegram.svg" alt="" width="24" height="24" />
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../js/common.js"></script>
+</body>
+</html>

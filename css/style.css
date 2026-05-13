@@ -1,0 +1,1071 @@
+/* ============================================================
+   Даша Рябова — портфолио  v3
+   Mobile-first (375px). Все отступы по Figma node 907:2455.
+   ============================================================ */
+
+/* ---------- Шрифты ---------- */
+
+@font-face {
+  font-family: 'NauryzRedKeds';
+  src: url('../fonts/NauryzRedKeds.woff2') format('woff2'),
+       url('../fonts/NauryzRedKeds.ttf')   format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- Дизайн-токены ---------- */
+
+:root {
+  --bg:       #121212;
+  --card:     #212121;
+  --chip:     #303030;
+  --text:     #f5f5f5;
+  --text-dim: rgba(245, 245, 245, 0.6);
+  --divider:  rgba(245, 245, 245, 0.1);
+  --glow:     0 0 5px rgba(255, 255, 255, 0.25);
+  --menu-shadow: 0 4px 9px rgba(0, 0, 0, 0.3);
+
+  --good-bg: #183a27;
+  --bad-bg:  #4a2926;
+
+  --font-display: 'NauryzRedKeds', system-ui, sans-serif;
+  --font-text:    'Manrope', system-ui, sans-serif;
+
+  --radius-card: 32px;
+  --radius-chip: 16px;
+  --radius-pill: 56px;
+}
+
+
+/* ---------- Базовые сбросы ---------- */
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding-left:  env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit; color: inherit;
+  background: none; border: none; padding: 0; cursor: pointer;
+}
+
+ul { margin: 0; padding-left: 21px; }
+li { margin-bottom: 0; }
+p, figure { margin: 0; }
+
+
+/* ============================================================
+   ШАПКА
+   Figma: position absolute, top 0, pt-40 pb-20 px-20
+   В вебе делаем sticky чтобы всегда была видна при скролле.
+   pt-40 = 40px (под статус-бар iOS), pb-20, px-20.
+   ============================================================ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 20px 20px;
+  background: var(--bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  /* Компенсируем системный статус-бар на iOS WebKit */
+  padding-top: max(40px, env(safe-area-inset-top));
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user__avatar {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--chip);
+  flex-shrink: 0;
+}
+
+.user__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user__name {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.burger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: opacity .2s ease;
+}
+.burger:active { opacity: 0.6; }
+
+/* Иконка переключается через body.menu-open */
+.burger__icon--close { display: none; }
+body.menu-open .burger__icon--open  { display: none; }
+body.menu-open .burger__icon--close { display: block; }
+
+
+/* ============================================================
+   МЕНЮ
+   Шапка остаётся (z-index выше), выезжает только карточка.
+   Бэкдроп под шапкой — #121212 при opacity 60%.
+   ============================================================ */
+
+.menu { position: fixed; inset: 0; z-index: 100; }
+.menu[hidden] { display: none; }
+
+.menu__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(18, 18, 18, 0.6);   /* #121212 при 60% */
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.menu__card {
+  position: absolute;
+  /* Высота шапки (40 + 32 avatar + 20) = 92px + 8px зазор */
+  top: calc(max(40px, env(safe-area-inset-top)) + 32px + 20px + 8px);
+  left: 16px;
+  right: 16px;
+  padding: 24px 0;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--menu-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(-200%);
+  transition: transform .3s cubic-bezier(.2,.8,.25,1);
+}
+
+.menu.is-open .menu__backdrop { opacity: 1; }
+.menu.is-open .menu__card    { transform: translateY(0); }
+
+.menu__link {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10px 4px;
+  word-break: break-word;
+  transition: opacity .2s ease;
+}
+.menu__link:active { opacity: 0.6; }
+.menu__link[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; }
+
+.menu__resume-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 10px;
+}
+
+.menu__resume.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--chip);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  transition: transform .15s ease, opacity .2s ease;
+}
+.menu__resume.chip:active { transform: scale(0.97); }
+.menu__resume.chip[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; opacity: .7; }
+
+
+/* ============================================================
+   HERO
+   Figma: обёртка pb-8 pt-104 px-16
+   (pt-104 компенсирует абсолютный хедер высотой ~104px)
+   В вебе хедер sticky → контент начинается под ним сразу.
+   Поэтому делаем pt-12 — небольшой воздух сверху.
+   ============================================================ */
+
+.hero-wrap {
+  padding: 12px 16px 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 343px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  filter: drop-shadow(var(--glow));
+}
+
+.hero__title {
+  margin: 0;
+  width: 100%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__title-line {
+  display: block;
+  padding: 16px 20px 0;
+}
+
+.hero__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 20px 2px;
+}
+
+.hero__title-row .hero__title-line { padding: 0; }
+
+.hero__flower {
+  width: 34px; height: 34px;
+  flex-shrink: 0;
+}
+
+.hero__description {
+  margin: 0;
+  padding: 2px 20px 6px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.hero__tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px 16px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--chip);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   СЕКЦИИ — общая обёртка
+   Figma: px-16 py-8 (для карточек проектов)
+   ============================================================ */
+
+.section          { width: 100%; }
+.section--projects { padding: 0 16px; }
+
+.section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+
+/* ============================================================
+   КАРТОЧКА ПРОЕКТА
+   Figma: обёртка px-16 py-8 → итого 8px между карточками
+   ============================================================ */
+
+/* Каждая карточка в своей обёртке с py-8 */
+.project-wrap {
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.project {
+  display: block;
+  width: 100%;
+  max-width: 343px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  color: inherit;
+  transition: transform .2s ease;
+}
+.project:active { transform: scale(0.99); }
+
+.project__cover {
+  position: relative;
+  height: 280px;
+  background: var(--chip);
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+
+.project__cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+
+.project__arrow {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 44px; height: 44px;
+  background: #212121;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease;
+}
+.project:hover  .project__arrow { transform: scale(1.06); }
+.project:active .project__arrow { transform: scale(1.02); }
+
+.project__body { display: flex; flex-direction: column; width: 100%; }
+
+/* pb-8 pt-24 px-20 */
+.project__title {
+  margin: 0;
+  padding: 24px 20px 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+/* pb-6 px-20, gap-4 */
+.project__meta { padding: 0 20px 6px; display: flex; flex-direction: column; gap: 4px; }
+.project__company { font-size: 14px; line-height: 22px; font-weight: 600; }
+.project__period  { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--text-dim); }
+
+/* px-20 py-2 */
+.project__paragraph { margin: 0; padding: 2px 20px; font-size: 14px; line-height: 22px; font-weight: 600; }
+.project__paragraph:last-child { padding-bottom: 16px; }
+.project__paragraph-label { color: var(--text-dim); }
+
+/* p-16, gap-12 между блоками метрик */
+.project__metrics { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.metrics-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--chip);
+  border-radius: var(--radius-chip);
+  padding: 10px 16px;
+}
+
+.metric {
+  width: 124px;
+  flex-shrink: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; text-align: center;
+}
+.metric__label { font-size: 14px; line-height: 22px; font-weight: 600; }
+.metric__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; white-space: nowrap; }
+
+.metric__divider {
+  width: 1px; height: 48px;
+  background: var(--divider);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   UI ШОТЫ
+   Figma: заголовок pb-4 pt-24 px-20 (в отдельном контейнере)
+           список pt-12 pb-8 px-16, gap-16
+   ============================================================ */
+
+.shots-heading {
+  width: 100%;
+  padding: 24px 20px 4px 32px;
+}
+
+.shots-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.shots-container {
+  width: 100%;
+  padding: 12px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;        /* ИСПРАВЛЕНИЕ: 16px вместо 24px */
+  align-items: center;
+}
+
+.shot {
+  position: relative;
+  width: 100%;
+  max-width: 343px;
+  background: #252525;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.shot--square  { aspect-ratio: 1 / 1; }
+.shot--tall    { height: 495px; }
+.shot--medium  { height: 294px; }
+.shot--short   { height: 287px; }
+
+.shot__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Видео в шоте — те же правила что и у картинки */
+video.shot__img {
+  display: block;
+  background: var(--card);
+}
+
+.shot__placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-size: 14px; text-align: center; padding: 16px;
+}
+
+.shot__label {
+  position: absolute; left: 16px; bottom: 16px;
+  background: var(--chip);
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 16px; line-height: 24px; font-weight: 600;
+  max-width: calc(100% - 32px);
+}
+
+
+/* ============================================================
+   КОНТАКТЫ
+   Figma: watermark pt-32 pb-4 px-16
+           chips row pt-8 pb-24 px-16
+   ============================================================ */
+
+.section--contacts { padding: 0 16px; }
+
+/* ИСПРАВЛЕНИЕ: pt-32 → было pt-24 */
+.contacts-watermark {
+  margin: 0;
+  padding: 32px 0 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--chip);
+  user-select: none;
+}
+
+/* ИСПРАВЛЕНИЕ: pt-8 → было pt-6 */
+.contacts-list {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0 24px;
+}
+
+.contact-card {
+  flex: 1 0 0; min-width: 0;
+  height: 96px;
+  background: var(--card);
+  border-radius: var(--radius-chip);
+  padding: 12px 16px;
+  display: flex; flex-direction: column;
+  justify-content: space-between; align-items: flex-start;
+  transition: transform .15s ease;
+}
+.contact-card:active { transform: scale(0.98); }
+
+.contact-card__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card__label {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 16px; line-height: 24px;
+}
+
+.contact-card__subtitle {
+  display: none; /* скрыто на 375px, показывается на 768px через media-query */
+}
+
+.contact-card__arrow { display: flex; align-items: center; justify-content: center; }
+
+.contact-card[aria-disabled="true"] { pointer-events: none; }
+.contact-card[aria-disabled="true"] .contact-card__label { color: var(--text-dim); }
+.contact-card[aria-disabled="true"] .contact-card__arrow img { opacity: .5; }
+
+
+/* ============================================================
+   КЕЙС — ЗАГОЛОВОК СТРАНИЦЫ
+   ============================================================ */
+
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 20px 0;
+}
+
+.case-back {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  background: var(--chip);
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  transition: transform .15s ease;
+}
+.case-back:active { transform: scale(0.95); }
+
+/* pt-32 pb-4 px-20 */
+.case-title {
+  margin: 0;
+  padding: 32px 20px 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  text-transform: lowercase;
+}
+
+/* px-20 py-16, gap-16 */
+.case-meta {
+  display: flex; flex-direction: column;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.case-meta__row > .label {
+  display: block;
+  font-size: 14px; line-height: 22px; font-weight: 600;
+  color: var(--text-dim); margin-bottom: 2px;
+}
+.case-meta__row > .value {
+  display: block;
+  font-size: 14px; line-height: 22px; font-weight: 700;
+}
+.case-meta__lead { margin: 0; font-size: 14px; line-height: 22px; font-weight: 600; }
+
+/* h2 кейса: "Процесс", "Финальные макеты" — pt-32 pb-4 px-20 */
+.case-h2 {
+  margin: 0;
+  padding: 32px 20px 4px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 24px; line-height: 32px;
+}
+
+/* h3 кейса — pt-24 pb-4 px-20 (обычный) */
+.case-h3 {
+  margin: 0;
+  padding: 24px 20px 4px;
+  font-family: var(--font-text);
+  font-weight: 800; font-size: 20px; line-height: 28px;
+}
+
+/* ИСПРАВЛЕНИЕ: первый h3 после meta → pt-16 (было pt-8) */
+.case-h3--tight { padding-top: 16px; }
+
+.case-p { margin: 0; padding: 8px 20px; font-size: 14px; line-height: 22px; font-weight: 600; }
+
+.case-list { padding: 8px 20px; }
+.case-list ul { list-style: disc; padding-left: 21px; }
+.case-list li + li { margin-top: 2px; }
+
+
+/* ============================================================
+   КЕЙС — МЕДИА, ДО/ПОСЛЕ, ГИПОТЕЗЫ, РЕЗУЛЬТАТЫ
+   ============================================================ */
+
+.case-media {
+  margin: 8px 16px; padding: 16px;
+  background: var(--card); border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.case-media--p24 { margin: 24px 16px; }
+
+.case-media__image {
+  width: 100%; border-radius: var(--radius-chip);
+  background: var(--chip); overflow: hidden;
+}
+.case-media__image img { width: 100%; height: auto; display: block; }
+
+.case-media__mockups {
+  display: flex; align-items: flex-start; gap: 4px; width: 100%;
+}
+.case-media__mockups > * { flex: 1 0 0; min-width: 0; }
+.case-media__mockups img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+.case-media__placeholder {
+  width: 100%; background: var(--chip); border-radius: var(--radius-chip);
+  padding: 32px 20px; text-align: center; color: var(--text-dim);
+  font-size: 12px; line-height: 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-height: 120px; justify-content: center;
+}
+.case-media__placeholder-label { color: var(--text); font-weight: 700; font-size: 14px; }
+
+/* Блок «Проблема / Гипотеза» */
+.case-callout { padding: 8px 20px; display: flex; flex-direction: column; gap: 16px; }
+
+.case-callout__item { display: flex; flex-direction: column; gap: 6px; }
+
+.case-callout__head {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-text); font-weight: 800; font-size: 16px; line-height: 24px;
+}
+.case-callout__icon { width: 24px; height: 24px; flex-shrink: 0; }
+.case-callout__text { font-size: 14px; line-height: 22px; font-weight: 600; }
+
+/* До / После */
+.case-beforeafter {
+  margin: 8px 16px; padding: 16px;
+  background: var(--card); border-radius: var(--radius-card);
+  display: flex; flex-direction: column; gap: 24px;
+}
+.case-beforeafter__block { display: flex; flex-direction: column; gap: 12px; }
+.case-beforeafter__label { margin: 0; font-family: var(--font-text); font-weight: 800; font-size: 20px; line-height: 28px; }
+.case-beforeafter__media {
+  width: 100%; border-radius: var(--radius-chip);
+  overflow: hidden; background: var(--chip);
+  min-height: 200px; display: flex; align-items: center; justify-content: center;
+}
+.case-beforeafter__media img { width: 100%; height: auto; display: block; }
+
+/* Сетка гипотез */
+.case-hypotheses { margin: 8px 16px; padding: 16px; background: var(--card); border-radius: var(--radius-card); }
+.case-hypotheses__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.case-hypothesis { padding: 10px 14px; border-radius: var(--radius-chip); font-size: 12px; line-height: 18px; font-weight: 600; }
+.case-hypothesis--good { background: var(--good-bg); }
+.case-hypothesis--bad  { background: var(--bad-bg); }
+
+/* Инсайты */
+.case-insights-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px 8px; }
+.case-insight { display: flex; flex-direction: column; gap: 8px; }
+.case-insight__delta { background: var(--good-bg); border-radius: 12px; padding: 10px 14px; text-align: center; font-family: var(--font-text); font-weight: 800; font-size: 12px; line-height: 18px; }
+.case-insight__label { background: var(--chip); border-radius: var(--radius-chip); padding: 10px 14px; text-align: center; font-size: 12px; line-height: 18px; font-weight: 600; flex: 1; display: flex; align-items: center; justify-content: center; }
+.case-insight-summary { margin-top: 16px; background: var(--chip); border-radius: var(--radius-chip); padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.case-insight-summary__icon { width: 24px; height: 24px; }
+.case-insight-summary__text { font-size: 12px; line-height: 18px; font-weight: 600; }
+
+/* Результаты */
+.case-results { padding: 8px 16px; display: flex; flex-direction: column; gap: 12px; }
+.case-result-row { background: var(--chip); border-radius: 24px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+.case-result-row--solo { justify-content: center; gap: 20px; }
+.case-result-cell { flex: 1 0 0; min-width: 124px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; }
+.case-result-cell__label { font-size: 14px; line-height: 22px; font-weight: 600; }
+.case-result-cell__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 28px; padding-top: 4px; }
+.case-result-cell__delta { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--text-dim); letter-spacing: -0.07px; white-space: nowrap; }
+
+/* Outro */
+.case-outro-wrap { display: block; }
+
+.case-outro { padding: 32px 20px 4px; font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 36px; letter-spacing: -0.616px; margin: 0; }
+
+.case-write { padding: 8px 20px 14px; }
+.case-write__btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--chip); border-radius: var(--radius-pill);
+  padding: 10px 16px 10px 18px;
+  font-size: 14px; line-height: 22px; font-weight: 600;
+  transition: transform .15s ease;
+}
+.case-write__btn:active { transform: scale(0.97); }
+
+/* Figma thumb */
+.case-figma-thumb { margin: 8px 16px 48px; padding: 16px; background: var(--card); border-radius: var(--radius-card); overflow: hidden; }
+.case-figma-thumb__inner { width: 100%; aspect-ratio: 1133/612; background: var(--chip); border-radius: var(--radius-chip); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 12px; }
+.case-figma-thumb__inner img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-chip); }
+
+
+/* ============================================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ (общая для всех страниц)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   ДОСТУПНОСТЬ
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; border-radius: 8px; }
+
+body.menu-open { overflow: hidden; }
+
+
+/* ============================================================
+   TABLET 768px
+   Все изменения от mobile-first базы (375px)
+   Figma nodes: 933:1302 (главная), 935:5858 (меню),
+                934:4610 (FIT кейс), 933:3347 (Дискомаркет кейс)
+   ============================================================ */
+
+@media (min-width: 768px) {
+
+  /* ---------- Глобальные токены ---------- */
+  :root {
+    --radius-card: 40px;
+  }
+
+  /* ---------- Шапка ---------- */
+  .header {
+    padding: max(40px, env(safe-area-inset-top)) 28px 28px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero-wrap {
+    padding: 12px 24px 8px;
+  }
+
+  /* Заголовок — одна строка: "Продуктовый дизайнер 🌻" */
+  .hero__title {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .hero__title-line:first-child {
+    padding: 24px 4px 4px 28px;
+    white-space: nowrap;
+  }
+  .hero__title-row {
+    padding: 4px 32px 4px 0;
+    align-items: center;
+  }
+  .hero__title-row .hero__title-line {
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .hero__description {
+    padding: 2px 28px 6px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .hero__tags {
+    padding: 12px 24px 24px;
+  }
+
+  /* ---------- Карточки проектов ---------- */
+  .section--projects {
+    padding: 0 24px;
+  }
+
+  .project__cover {
+    height: 556px;
+  }
+
+  /* Стрелка: 56×56, фон #212121 (темнее чем на мобилке) */
+  .project__arrow {
+    width: 56px;
+    height: 56px;
+    background: #212121;
+    top: 24px;
+    right: 24px;
+  }
+
+  .project__title {
+    padding: 24px 28px 8px;
+  }
+
+  /* Мета в ряд */
+  .project__meta {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 28px 6px;
+    align-items: baseline;
+  }
+
+  .project__paragraph {
+    padding: 2px 28px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Метрики — все в один ряд (FIT: 4 метрики в одну полоску) */
+  .project__metrics {
+    flex-direction: row;
+    gap: 0;
+    padding: 0 16px 16px;
+    background: none;
+  }
+
+  .metrics-row {
+    flex: 1 0 0;
+    border-radius: 0;
+    padding: 10px 0;
+    gap: 0;
+  }
+
+  /* Закругляем только внешние углы */
+  .metrics-row:first-child {
+    border-top-left-radius: var(--radius-chip);
+    border-bottom-left-radius: var(--radius-chip);
+    padding-left: 16px;
+  }
+  .metrics-row:last-child {
+    border-top-right-radius: var(--radius-chip);
+    border-bottom-right-radius: var(--radius-chip);
+    padding-right: 16px;
+  }
+  /* Если только одна строка метрик — полное скругление */
+  .metrics-row:only-child {
+    border-radius: var(--radius-chip);
+    padding: 10px 16px;
+  }
+  /* Разделитель между группами метрик */
+  .metrics-row + .metrics-row {
+    border-left: 1px solid var(--divider);
+  }
+
+  .metric {
+    width: auto;
+    flex: 1 0 0;
+  }
+  .metric__label { font-size: 16px; }
+
+  /* ---------- UI шоты ---------- */
+
+  /* Заголовок: px-28 */
+  .shots-heading {
+    padding: 24px 28px 4px;
+  }
+
+  /* 2-колоночный грид */
+  .shots-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 8px 24px;
+  }
+
+  .shot { max-width: none; }
+
+  /* Crypto → col1 row1 | E-commerce → col2 row1
+     Analytics → col2 row2 | Task Manager → col1 row2 */
+  .shot:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .shot:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .shot:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .shot:nth-child(4) { grid-column: 1; grid-row: 2; }
+
+  .shot--tall   { height: 511px; }
+  .shot--medium { height: 307px; }
+  .shot--short  { height: 293px; }
+
+  /* ---------- Контакты ---------- */
+
+  .contacts-watermark {
+    font-size: 76px;
+    padding: 48px 0 4px;
+  }
+
+  .contact-card {
+    height: 142px;
+    border-radius: 20px;
+    padding: 20px 24px;
+  }
+
+  .contact-card__label {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  /* Subtitle — скрыт на мобилке, показывается на 768+ */
+  .contact-card__subtitle {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* ---------- Меню (планшет) ---------- */
+  /* Высота шапки на планшете: max(40, safe-area) + 32 + 28 = ~100px + 8px зазор */
+  .menu__card {
+    top: calc(max(40px, env(safe-area-inset-top)) + 32px + 28px + 8px);
+  }
+
+
+  /* ======================================================
+     КЕЙСЫ — 768px
+     ====================================================== */
+
+  /* Шапка кейса */
+  .case-header {
+    padding: 24px 28px 0;
+  }
+
+  /* Заголовок кейса:
+     В Figma pt-124 (под абсолютным header).
+     У нас header sticky — оставляем небольшой отступ. */
+  .case-title {
+    padding: 24px 28px 4px;
+  }
+
+  .case-meta {
+    padding: 16px 28px;
+  }
+
+  .case-h2 {
+    padding: 32px 28px 4px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .case-h3 {
+    padding: 24px 28px 4px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .case-h3--tight { padding-top: 16px; }
+
+  .case-p {
+    padding: 8px 28px;
+  }
+
+  .case-list {
+    padding: 8px 28px;
+  }
+
+  .case-callout {
+    padding: 8px 28px;
+  }
+
+  /* Медиа-контейнеры */
+  .case-media {
+    margin: 8px 24px;
+    padding: 24px;
+    border-radius: 40px;
+  }
+  .case-media--p24 {
+    margin: 24px;
+  }
+
+  /* До / После → в ряд */
+  .case-beforeafter {
+    flex-direction: row;
+    gap: 24px;
+    margin: 8px 24px;
+    padding: 24px;
+    border-radius: 40px;
+  }
+  .case-beforeafter__block { flex: 1 0 0; }
+
+  /* Гипотезы → 4 колонки */
+  .case-hypotheses {
+    margin: 8px 24px;
+    padding: 24px;
+    border-radius: 40px;
+  }
+  .case-hypotheses__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Инсайты → 4 колонки */
+  .case-insights-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Результаты */
+  .case-results {
+    padding: 8px 24px;
+  }
+
+  /* Outro + кнопка «Написать» — в одну строку */
+  .case-outro-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding: 48px 28px 4px;
+  }
+  .case-outro-wrap .case-outro {
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 0;
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .case-outro-wrap .case-write {
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .case-outro-wrap + .case-figma-thumb {
+    margin-top: 16px;
+  }
+
+  .case-figma-thumb {
+    margin: 8px 24px 48px;
+    border-radius: 40px;
+    padding: 24px;
+  }
+
+}

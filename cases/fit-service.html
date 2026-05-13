@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <title>Переработка программы лояльности FIT SERVICE — Даша Рябова</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Картинки-коллажи (несколько скринов в одном файле) — показываем целиком */
+    .case-media__image img,
+    .case-beforeafter__media img {
+      border-radius: var(--radius-chip);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="case-header">
+    <a class="case-back" href="../index.html#projects" aria-label="Назад к проектам">
+      <img src="../images/icons/arrow-back.svg" alt="" width="24" height="24" />
+    </a>
+    <div class="user">
+      <span class="user__avatar"><img src="../images/avatar.jpg" alt="" /></span>
+      <p class="user__name">Даша Рябова</p>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="case-title">Переработка программы лояльности fit service</h1>
+
+    <div class="case-meta">
+      <div class="case-meta__row">
+        <span class="label">Роль</span>
+        <span class="value">Продуктовый дизайнер</span>
+      </div>
+      <div class="case-meta__row">
+        <span class="label">Период</span>
+        <span class="value">Январь 2025 — сейчас</span>
+      </div>
+      <p class="case-meta__lead">Единственный продуктовый дизайнер в команде</p>
+    </div>
+
+    <!-- Hero — составной (6 скринов тёмной темы в одном файле) -->
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/fit-service/hero.png" alt="Финальные экраны Бонусного счёта FIT SERVICE" loading="eager" />
+      </div>
+    </div>
+
+    <h3 class="case-h3 case-h3--tight">Контекст</h3>
+    <p class="case-p">FIT SERVICE — федеральная сеть из 346+ постгарантийных автосервисов. Через приложение записываются на ТО, смотрят историю обслуживания, пользуются программой лояльности.</p>
+
+    <h3 class="case-h3">Проблема</h3>
+    <p class="case-p">Пользователи заходят в лояльность, но не записываются на СТО.</p>
+
+    <h3 class="case-h3">Задача</h3>
+    <p class="case-p">Увеличить конверсию в запись на СТО со страницы лояльности.</p>
+
+    <h3 class="case-h3">Цель бизнеса</h3>
+    <p class="case-p">Рост вовлечения в Лояльность.</p>
+
+    <h3 class="case-h3">Миссия для пользователя</h3>
+    <p class="case-p">Иметь понятный и информативный раздел, в котором можно познакомиться с преимуществами Лояльности.</p>
+
+    <h3 class="case-h3">Аудитория</h3>
+    <p class="case-p">MAU Бонусного счёта.</p>
+
+    <h3 class="case-h3">Цель минимум</h3>
+    <div class="case-list"><ul>
+      <li>Вырастить CR на запись на СТО через бонусный счёт.</li>
+      <li>Вырастить общий CR на запись на СТО.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Цель максимум</h3>
+    <div class="case-list"><ul>
+      <li>Вырастить retention в бонусный счёт.</li>
+      <li>Вырастить CSAT среди пользователей лояльности.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Платформа</h3>
+    <p class="case-p">Флоу спроектированы под iOS исходя из бизнес-требований в целях экономии ресурсов, в случае роста метрик будем делать на Android.</p>
+
+    <!-- Figma: готовые сценарии — масштаб проекта -->
+    <div class="case-media case-media--p24">
+      <div class="case-media__image">
+        <img src="../images/cases/fit-service/process.png" alt="Figma: готовые сценарии лояльности" loading="lazy" />
+      </div>
+    </div>
+
+    <h2 class="case-h2">Процесс</h2>
+
+    <h3 class="case-h3 case-h3--tight">Анализ</h3>
+    <div class="case-list"><ul>
+      <li>Провела аудит текущей лояльности в приложении: нашла проблемные места и сформулировала первые гипотезы.</li>
+      <li>Изучила программы лояльности у прямых и непрямых конкурентов. Так как у конкурентов FIT SERVICE лояльность была слабой или отсутствовала, опиралась на лучшие практики из других сфер.</li>
+      <li>Собрала обратную связь от поддержки и дополнила список гипотез частыми пользовательскими проблемами.</li>
+      <li>Провела 8 глубинных интервью с реальными пользователями FIT SERVICE: проверила гипотезы и выделила инсайты.</li>
+      <li>Провела коридорное тестирование на 12 участниках: пользователи находили информацию, но часто путались, делали лишние действия и тратили больше времени, чем ожидалось.</li>
+      <li>На коридорках 5/12 респондентов жаловались, что текст в разделе мелкий и его сложно читать. Когда я приступала к дизайну, быстро собрала вариант обновлённого дизайна и проверила его на респондентах. Моя версия лучше сработала у 6 из 6 пользователей: её считывали быстрее, называли более удобной и визуально понятной. Результаты я принесла стейкхолдеру, он согласился на редизайн лояльности при условии, что успею сделать в сроки. Я рискнула и довела редизайн до результата без срыва дедлайна.</li>
+      <li>Список гипотез мы приоритизировали с проджектом. Откинули часть гипотез из-за сложности в реализации или не очень большой надобности. В итоге, мы забрали в Hi-Fi дизайн выделенные зелёным гипотезы. К остальным гипотезам из дискавери решили вернуться позже, после запуска фичи и результатов тестов.</li>
+    </ul></div>
+
+    <div class="case-hypotheses">
+      <div class="case-hypotheses__grid">
+        <div class="case-hypothesis case-hypothesis--good">Если показать статус и доступные привилегии рядом, то пользователи будут быстрее понимать, какие выгоды им уже доступны, и чаще взаимодействовать с программой лояльности</div>
+        <div class="case-hypothesis case-hypothesis--good">Если вынести все подарки на главный экран программы лояльности, то пользователи будут чаще замечать доступные привилегии и чаще взаимодействовать с ними</div>
+        <div class="case-hypothesis case-hypothesis--good">Если вынести наверх всю ключевую информацию о баллах — на что их можно потратить, как получать, когда сгорают, — то пользователи будут лучше понимать механику программы, а конверсия в запись на СТО вырастет</div>
+        <div class="case-hypothesis case-hypothesis--good">Если расположить кнопку «Потратить» рядом с бонусным счётом, то пользователи будут быстрее находить целевое действие, и конверсия в использование баллов и запись на СТО вырастет</div>
+        <div class="case-hypothesis case-hypothesis--good">Если показать дату, до которой нужно обслужиться на нужную сумму для перехода на следующий статус, пользователи будут чаще записываться на СТО, чтобы успеть получить новые привилегии</div>
+        <div class="case-hypothesis case-hypothesis--good">Если сделать информацию о скором сгорании баллов более заметной (иконка + текст), то это создаст дополнительный стимул использовать баллы раньше, и конверсия в запись на СТО вырастет</div>
+        <div class="case-hypothesis case-hypothesis--good">Если разделить экран программы лояльности на понятные смысловые блоки, то пользователям будет проще ориентироваться, они будут быстрее находить нужную информацию и реже путаться в сценариях</div>
+        <div class="case-hypothesis case-hypothesis--bad">Если давать пользователям персональные предложения, например повышенный кэшбэк баллами на определённые услуги, то они будут активнее пользоваться программой лояльности и чаще записываться на СТО</div>
+        <div class="case-hypothesis case-hypothesis--good">Если продублировать раздел «Акции» в бонусном счёте, то пользователи будут чаще замечать выгодные предложения в момент, когда уже вовлечены в сценарий лояльности, и конверсия в запись на СТО вырастет</div>
+        <div class="case-hypothesis case-hypothesis--bad">Если ввести подписку на повышенный кэшбэк баллами или постоянную скидку на услуги, то пользователи будут чаще возвращаться на СТО и станут активнее пользоваться программой лояльности</div>
+        <div class="case-hypothesis case-hypothesis--good">Если показать пользователю, что нужно сделать для сохранения уровня, то это усилит его мотивацию чаще записываться на СТО</div>
+      </div>
+    </div>
+
+    <h3 class="case-h3">Проектирование</h3>
+    <div class="case-list"><ul>
+      <li>Спроектировала ключевые сценарии Бонусного счёта.</li>
+      <li>Пересобрала структуру раздела, чтобы пользователь быстрее понимал свою выгоду, доступные действия и правила программы.</li>
+      <li>Упростила навигацию внутри лояльности: вынесла основные действия и важную информацию выше по экрану.</li>
+      <li>Переписала UX-тексты: сделала правила лояльности короче, понятнее и ближе к пользовательским сценариям.</li>
+      <li>Подготовила Hi-Fi макеты.</li>
+      <li>Согласовала решения с проджектом и заказчиком.</li>
+    </ul></div>
+
+    <h3 class="case-h3">Взаимодействие с командой</h3>
+    <div class="case-list"><ul>
+      <li>Обсуждала решения с проджектом и разработчиками.</li>
+      <li>Подготавливала макеты и описывала работу для передачи в разработку.</li>
+      <li>Проводила дизайн-ревью на тестовых стендах до релиза.</li>
+      <li>Презентовала дизайн-решения и защищала их перед командой и бизнес-заказчиком.</li>
+    </ul></div>
+
+    <h2 class="case-h2">Что получилось</h2>
+
+    <!-- До / После -->
+    <div class="case-beforeafter">
+      <div class="case-beforeafter__block">
+        <p class="case-beforeafter__label">До</p>
+        <div class="case-beforeafter__media">
+          <img src="../images/cases/fit-service/before.png" alt="Бонусный счёт — старый дизайн" loading="lazy" />
+        </div>
+      </div>
+      <div class="case-beforeafter__block">
+        <p class="case-beforeafter__label">После</p>
+        <div class="case-beforeafter__media">
+          <img src="../images/cases/fit-service/after-1.png" alt="Бонусный счёт — новый дизайн, светлая тема" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Финальные мокапы — 2 составных изображения -->
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/fit-service/after-2.png" alt="Финальные экраны: Золото, тёмная тема" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/fit-service/final-1.png" alt="Финальные экраны: статусы и подарки" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="case-media">
+      <div class="case-media__image">
+        <img src="../images/cases/fit-service/final-2.png" alt="Финальные экраны: промокод, скидки, бесплатные услуги" loading="lazy" />
+      </div>
+    </div>
+
+    <h3 class="case-h3">Проверка решения</h3>
+    <p class="case-p">Провела юзабилити-тестирование на 12 участниках на реальных пользователях FIT SERVICE. Пользователи быстрее находили нужную информацию, увереннее проходили сценарии и меньше ошибались.</p>
+
+    <div class="case-hypotheses">
+      <div class="case-insights-grid">
+        <div class="case-insight"><div class="case-insight__delta">27 сек → 5 сек</div><div class="case-insight__label">На что можно потратить баллы</div></div>
+        <div class="case-insight"><div class="case-insight__delta">10 сек → 6 сек</div><div class="case-insight__label">Какой лимит списания баллов за заказ</div></div>
+        <div class="case-insight"><div class="case-insight__delta">8 сек → 3 сек</div><div class="case-insight__label">Понять преимущества уровня</div></div>
+        <div class="case-insight"><div class="case-insight__delta">4 сек → 2 сек</div><div class="case-insight__label">Найти сгорающие баллы</div></div>
+        <div class="case-insight"><div class="case-insight__delta">5 сек → 3 сек</div><div class="case-insight__label">Найти кнопку «Использовать»</div></div>
+        <div class="case-insight"><div class="case-insight__delta">50 сек → 3 сек</div><div class="case-insight__label">Как сохранить уровень</div></div>
+      </div>
+      <div class="case-insight-summary">
+        <img class="case-insight-summary__icon" src="../images/icons/bulb.svg" alt="" width="24" height="24" />
+        <p class="case-insight-summary__text">Пользователи понимают, как активировать подарок, нет проблем чтобы воспользоваться услугой, правильно понимают как перейти на следующий уровень.</p>
+      </div>
+    </div>
+
+    <h3 class="case-h3">Результаты</h3>
+    <p class="case-p">Провели A/B-тест на 20к пользователей сплитом 50/50.</p>
+
+    <div class="case-results">
+      <div class="case-result-row">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в запись в Бонусном счёте</p>
+          <p class="case-result-cell__value">+1.2%</p>
+          <p class="case-result-cell__delta">7,1% → 8,3%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Общий CR в запись</p>
+          <p class="case-result-cell__value">+0.2%</p>
+          <p class="case-result-cell__delta">4,8% → 5,0%</p>
+        </div>
+      </div>
+      <div class="case-result-row">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Retention Rate</p>
+          <p class="case-result-cell__value">+ 3 %</p>
+          <p class="case-result-cell__delta">27% → 30%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CSAT</p>
+          <p class="case-result-cell__value">+1.2</p>
+          <p class="case-result-cell__delta">3.4 / 5 → 4.2 / 5</p>
+        </div>
+      </div>
+      <div class="case-result-row case-result-row--solo">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в «Забрать подарок»</p>
+          <p class="case-result-cell__value">+2%</p>
+          <p class="case-result-cell__delta">14% → 16%</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-outro-wrap">
+      <p class="case-outro">Буду рада подробнее рассказать о кейсе на собеседовании</p>
+      <div class="case-write">
+        <a class="case-write__btn" href="https://t.me/ryabovad" target="_blank" rel="noopener">
+          Написать
+          <img src="../images/icons/telegram.svg" alt="" width="24" height="24" />
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../js/common.js"></script>
+</body>
+</html>
