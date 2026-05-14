@@ -58,7 +58,7 @@
       "title": "Редизайн маркетплейса",
       "company": "fact.digital",
       "period": "ноябрь 2023 → декабрь 2024",
-      "image": "images/projects/discomarket.png",
+      "image": "images/projects/discomarket.webp",
       "imageAlt": "Мокапы Дискомаркета",
       "about": "Дискомаркет — это маркетплейс и каталогизатор для любителей музыки на физических носителях — виниле, CD и кассетах.",
       "role": "Держала весь дизайн коммерческой части: от исследования до передачи в разработку и дизайн-ревью. Переосмыслила текущий UI и UX, создала бесшовный путь от покупки пластинки до её получения.",
@@ -77,7 +77,7 @@
       "size": "tall"
     },
     {
-      "image": "images/shots/analytics.png",
+      "image": "images/shots/analytics.webp",
       "label": "Analytics Dashboard",
       "size": "medium"
     },
