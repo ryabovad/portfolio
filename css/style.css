@@ -437,7 +437,7 @@ body.menu-open .burger__icon--close { display: block; }
 
 .shots-heading {
   width: 100%;
-  padding: 24px 20px 4px 32px;
+  padding: 24px 20px 4px 24px;
 }
 
 .shots-heading h2 {
@@ -537,10 +537,9 @@ video.shot__img {
 
 .section--contacts { padding: 0 16px; }
 
-/* ИСПРАВЛЕНИЕ: pt-32 → было pt-24 */
 .contacts-watermark {
   margin: 0;
-  padding: 32px 0 4px;
+  padding: 32px 8px 4px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 36px;
