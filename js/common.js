@@ -81,6 +81,56 @@
   }
 
 
+  /* ---------- Авто-скрытие шапки при скролле ---------- */
+
+  function initHeaderHide() {
+    const header = document.querySelector('.header, .case-header');
+    if (!header) return;
+
+    const SHOW_BELOW = 80;  // в верхней зоне шапка всегда видна
+    const DELTA = 4;        // минимальный сдвиг скролла, чтобы реагировать
+
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY;
+      const diff = y - lastY;
+
+      // Меню открыто — не трогаем шапку (в ней крестик)
+      if (document.body.classList.contains('menu-open')) {
+        header.classList.remove('is-hidden');
+        lastY = y;
+        ticking = false;
+        return;
+      }
+
+      if (Math.abs(diff) < DELTA) {
+        ticking = false;
+        return;
+      }
+
+      if (y < SHOW_BELOW) {
+        header.classList.remove('is-hidden');
+      } else if (diff > 0) {
+        header.classList.add('is-hidden');
+      } else {
+        header.classList.remove('is-hidden');
+      }
+
+      lastY = y;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+
   /* ---------- Инициализация ---------- */
 
   // Экспортируем reInit для main.js (динамический контент рендерится после DOMContentLoaded)
@@ -89,5 +139,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     initMenu();
     initReveal();
+    initHeaderHide();
   });
 })();
