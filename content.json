@@ -67,7 +67,7 @@
   ],
   "shots": [
     {
-      "image": "images/shots/crypto.jpg",
+      "image": "images/shots/crypto.png",
       "label": "Crypto App",
       "size": "square"
     },
