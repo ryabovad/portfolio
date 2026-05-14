@@ -93,23 +93,28 @@
     const sizeClass = `shot--${s.size || 'square'}`;
     const hasVideo = !!(s.video && s.video.trim());
     const hasImage = !!(s.image && s.image.trim());
+    const hasBacking = !!(s.backing && s.backing.trim());
+    const idClass = s.shotId ? ` shot--${s.shotId}` : '';
+    const backingClass = hasBacking ? ' shot--has-backing' : '';
+    const backingStyle = hasBacking ? ` style="background-image:url('${esc(s.backing)}')"` : '';
+    const mediaClass = hasBacking ? 'shot__media' : 'shot__img';
 
     let media = '';
     if (hasVideo) {
       media = `<video
-        class="shot__img"
+        class="${mediaClass}"
         src="${esc(s.video)}"
         autoplay muted loop playsinline
         preload="metadata"
         aria-label="${esc(s.label)}"
       ></video>`;
     } else if (hasImage) {
-      media = `<img class="shot__img" src="${esc(s.image)}" alt="${esc(s.label)}" loading="lazy" />`;
+      media = `<img class="${mediaClass}" src="${esc(s.image)}" alt="${esc(s.label)}" loading="lazy" />`;
     } else {
       media = `<div class="shot__placeholder"><span>Картинка «${esc(s.label)}» пока не загружена</span></div>`;
     }
 
-    return `<figure class="shot ${sizeClass}">
+    return `<figure class="shot ${sizeClass}${backingClass}${idClass}"${backingStyle}>
       ${media}
       <figcaption class="shot__label">${esc(s.label)}</figcaption>
     </figure>`;

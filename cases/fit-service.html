@@ -15,6 +15,11 @@
     .case-beforeafter__media img {
       border-radius: var(--radius-chip);
     }
+    /* Убираем внутреннюю подложку под картинками — оставляем только внешнюю карточку */
+    .case-media__image { background: transparent; }
+    /* Внутри До/После убираем серую подложку и скругления под "После" — картинка с пояснениями заполняет фрейм сама */
+    .case-beforeafter__block:last-child .case-beforeafter__media,
+    .case-beforeafter__block:last-child .case-beforeafter__media img { background: transparent; border-radius: 0; }
   </style>
 </head>
 <body>
@@ -47,7 +52,7 @@
     <!-- Hero — составной (6 скринов тёмной темы в одном файле) -->
     <div class="case-media">
       <div class="case-media__image">
-        <img src="../images/cases/fit-service/hero.png" alt="Финальные экраны Бонусного счёта FIT SERVICE" loading="eager" />
+        <img src="../images/cases/fit-service/hero.webp" alt="Экраны Бонусного счёта FIT SERVICE" loading="eager" />
       </div>
     </div>
 
@@ -87,7 +92,7 @@
     <!-- Figma: готовые сценарии — масштаб проекта -->
     <div class="case-media case-media--p24">
       <div class="case-media__image">
-        <img src="../images/cases/fit-service/process.png" alt="Figma: готовые сценарии лояльности" loading="lazy" />
+        <img src="../images/cases/fit-service/scope.webp" alt="Ключевые сценарии Бонусного счёта" loading="lazy" />
       </div>
     </div>
 
@@ -145,33 +150,20 @@
       <div class="case-beforeafter__block">
         <p class="case-beforeafter__label">До</p>
         <div class="case-beforeafter__media">
-          <img src="../images/cases/fit-service/before.png" alt="Бонусный счёт — старый дизайн" loading="lazy" />
+          <img src="../images/cases/fit-service/before.webp" alt="Бонусный счёт — старый дизайн" loading="lazy" />
         </div>
       </div>
       <div class="case-beforeafter__block">
-        <p class="case-beforeafter__label">После</p>
         <div class="case-beforeafter__media">
-          <img src="../images/cases/fit-service/after-1.png" alt="Бонусный счёт — новый дизайн, светлая тема" loading="lazy" />
+          <img src="../images/cases/fit-service/after.webp" alt="Бонусный счёт — новый дизайн с пояснениями к гипотезам" loading="lazy" />
         </div>
       </div>
     </div>
 
-    <!-- Финальные мокапы — 2 составных изображения -->
+    <!-- Финальные мокапы — тёмная тема -->
     <div class="case-media">
       <div class="case-media__image">
-        <img src="../images/cases/fit-service/after-2.png" alt="Финальные экраны: Золото, тёмная тема" loading="lazy" />
-      </div>
-    </div>
-
-    <div class="case-media">
-      <div class="case-media__image">
-        <img src="../images/cases/fit-service/final-1.png" alt="Финальные экраны: статусы и подарки" loading="lazy" />
-      </div>
-    </div>
-
-    <div class="case-media">
-      <div class="case-media__image">
-        <img src="../images/cases/fit-service/final-2.png" alt="Финальные экраны: промокод, скидки, бесплатные услуги" loading="lazy" />
+        <img src="../images/cases/fit-service/final.webp" alt="Финальные экраны Бонусного счёта в тёмной теме" loading="lazy" />
       </div>
     </div>
 
@@ -239,6 +231,14 @@
           Написать
           <img src="../images/icons/telegram.svg" alt="" width="24" height="24" />
         </a>
+      </div>
+    </div>
+
+
+    <!-- Figma thumb -->
+    <div class="case-figma-thumb">
+      <div class="case-figma-thumb__inner">
+        <img src="../images/cases/fit-service/figma.webp" alt="Figma: готовые сценарии лояльности" />
       </div>
     </div>
 

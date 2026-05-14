@@ -25,7 +25,7 @@
       "title": "Редизайн программы лояльности",
       "company": "Nigma Software",
       "period": "январь 2025 → сейчас",
-      "image": "images/projects/fit-service.png",
+      "image": "images/projects/fit-service.webp",
       "imageAlt": "Мокапы FIT SERVICE",
       "about": "FIT SERVICE — федеральная сеть из 346+ постгарантийных автосервисов. Через приложение записываются на ТО, смотрят историю обслуживания, пользуются программой лояльности.",
       "role": "Была единственным продуктовым дизайнером в команде. Участвовала в процессе с момента сбора требований до выкатки в прод. Презентовала и защищала решения.",
@@ -67,12 +67,14 @@
   ],
   "shots": [
     {
-      "image": "images/shots/crypto.png",
+      "image": "images/shots/crypto.webp",
       "label": "Crypto App",
       "size": "square"
     },
     {
+      "shotId": "e-commerce",
       "video": "images/shots/ecommerce.mp4",
+      "backing": "images/shots/e-commerce-backing.webp",
       "label": "E-commerce App",
       "size": "tall"
     },
@@ -82,7 +84,9 @@
       "size": "medium"
     },
     {
+      "shotId": "task-manager",
       "video": "images/shots/tasks.mov",
+      "backing": "images/shots/task-manager-backing.webp",
       "label": "Task Manager",
       "size": "short"
     }
