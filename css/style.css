@@ -174,11 +174,22 @@ body.menu-open .burger__icon--close { display: block; }
   flex-direction: column;
   gap: 8px;
   transform: translateY(-200%);
-  transition: transform .3s cubic-bezier(.2,.8,.25,1);
+  opacity: 0;
+  /* Close: карточка едет вверх и одновременно растворяется (фон+текст вместе) */
+  transition:
+    transform .22s cubic-bezier(.4, 0, 1, 1),
+    opacity .22s ease;
 }
 
 .menu.is-open .menu__backdrop { opacity: 1; }
-.menu.is-open .menu__card    { transform: translateY(0); }
+.menu.is-open .menu__card {
+  transform: translateY(0);
+  opacity: 1;
+  /* Open: только слайд вниз, как было изначально */
+  transition:
+    transform .3s cubic-bezier(.2, .8, .25, 1),
+    opacity 0s linear;
+}
 
 .menu__link {
   text-align: center;
@@ -233,7 +244,6 @@ body.menu-open .burger__icon--close { display: block; }
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 343px;
   background: var(--card);
   border-radius: var(--radius-card);
   filter: drop-shadow(var(--glow));
@@ -331,7 +341,6 @@ body.menu-open .burger__icon--close { display: block; }
 .project {
   display: block;
   width: 100%;
-  max-width: 343px;
   background: var(--card);
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -342,13 +351,13 @@ body.menu-open .burger__icon--close { display: block; }
 
 .project__cover {
   position: relative;
-  height: 280px;
+  aspect-ratio: 343 / 280;
   background: var(--chip);
   overflow: hidden;
   border-radius: var(--radius-card);
 }
 
-.project__cover img {
+.project__cover > img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
 }
@@ -362,10 +371,12 @@ body.menu-open .burger__icon--close { display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform .2s ease;
+  transition: background-color .15s ease;
 }
-.project:hover  .project__arrow { transform: scale(1.06); }
-.project:active .project__arrow { transform: scale(1.02); }
+@media (hover: hover) {
+  .project:hover .project__arrow { background: #404040; }
+}
+.project:active .project__arrow { background: #525252; }
 
 .project__body { display: flex; flex-direction: column; width: 100%; }
 
@@ -449,16 +460,15 @@ body.menu-open .burger__icon--close { display: block; }
 .shot {
   position: relative;
   width: 100%;
-  max-width: 343px;
   background: #252525;
   border-radius: var(--radius-card);
   overflow: hidden;
 }
 
 .shot--square  { aspect-ratio: 1 / 1; }
-.shot--tall    { height: 495px; }
-.shot--medium  { height: 294px; }
-.shot--short   { height: 287px; }
+.shot--tall    { aspect-ratio: 343 / 495; }
+.shot--medium  { aspect-ratio: 343 / 294; }
+.shot--short   { aspect-ratio: 343 / 287; }
 
 .shot__img {
   position: absolute; inset: 0;
@@ -523,9 +533,12 @@ video.shot__img {
   padding: 12px 16px;
   display: flex; flex-direction: column;
   justify-content: space-between; align-items: flex-start;
-  transition: transform .15s ease;
+  transition: background-color .15s ease;
 }
-.contact-card:active { transform: scale(0.98); }
+@media (hover: hover) {
+  .contact-card:hover { background: #2e2e2e; }
+}
+.contact-card:active { background: #404040; }
 
 .contact-card__text {
   display: flex;
@@ -563,12 +576,15 @@ video.shot__img {
 .case-back {
   display: flex; align-items: center; justify-content: center;
   width: 44px; height: 44px;
-  background: var(--chip);
+  background: #2e2e2e;
   border-radius: var(--radius-pill);
   flex-shrink: 0;
-  transition: transform .15s ease;
+  transition: background-color .15s ease;
 }
-.case-back:active { transform: scale(0.95); }
+@media (hover: hover) {
+  .case-back:hover { background: #404040; }
+}
+.case-back:active { background: #525252; }
 
 /* pt-32 pb-4 px-20 */
 .case-title {
@@ -818,7 +834,7 @@ body.menu-open { overflow: hidden; }
   }
 
   .project__cover {
-    height: 556px;
+    aspect-ratio: 720 / 556;
   }
 
   /* Стрелка: 56×56, фон #212121 (темнее чем на мобилке) */
@@ -905,8 +921,6 @@ body.menu-open { overflow: hidden; }
     padding: 8px 24px;
   }
 
-  .shot { max-width: none; }
-
   /* Crypto → col1 row1 | E-commerce → col2 row1
      Analytics → col2 row2 | Task Manager → col1 row2 */
   .shot:nth-child(1) { grid-column: 1; grid-row: 1; }
@@ -914,15 +928,24 @@ body.menu-open { overflow: hidden; }
   .shot:nth-child(3) { grid-column: 2; grid-row: 2; }
   .shot:nth-child(4) { grid-column: 1; grid-row: 2; }
 
-  .shot--tall   { height: 511px; }
-  .shot--medium { height: 307px; }
-  .shot--short  { height: 293px; }
+  /* Figma 768: tall 346×502, medium 346×302, short 346×288 */
+  .shot--tall   { aspect-ratio: 346 / 502; }
+  .shot--medium { aspect-ratio: 346 / 302; }
+  .shot--short  { aspect-ratio: 346 / 288; }
 
-  /* ---------- Контакты ---------- */
+  /* ---------- Контакты ----------
+     Figma: watermark px-28, contacts row px-24 */
+  .section--contacts {
+    padding: 0;
+  }
 
   .contacts-watermark {
     font-size: 76px;
-    padding: 48px 0 4px;
+    padding: 48px 28px 4px;
+  }
+
+  .contacts-list {
+    padding: 8px 24px 24px;
   }
 
   .contact-card {
@@ -946,10 +969,14 @@ body.menu-open { overflow: hidden; }
     margin-top: 2px;
   }
 
-  /* ---------- Меню (планшет) ---------- */
-  /* Высота шапки на планшете: max(40, safe-area) + 32 + 28 = ~100px + 8px зазор */
+  /* ---------- Меню (планшет) ----------
+     Figma: card mx-24, py-24, drop-shadow более выраженная.
+     Высота шапки на планшете: max(40, safe-area) + 32 + 28 = ~100px + 8px зазор */
   .menu__card {
     top: calc(max(40px, env(safe-area-inset-top)) + 32px + 28px + 8px);
+    left: 24px;
+    right: 24px;
+    box-shadow: 0 4px 4.5px rgba(0, 0, 0, 0.6);
   }
 
 

@@ -61,7 +61,7 @@
       document.body.classList.remove('menu-open');
       burger.setAttribute('aria-expanded', 'false');
       burger.setAttribute('aria-label', 'Открыть меню');
-      setTimeout(() => { if (!menu.classList.contains('is-open')) menu.hidden = true; }, 320);
+      setTimeout(() => { if (!menu.classList.contains('is-open')) menu.hidden = true; }, 260);
     }
 
     function toggle() {
