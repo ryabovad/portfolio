@@ -22,6 +22,16 @@
       <span class="user__avatar"><img src="" alt="" data-slot="avatar" /></span>
       <p class="user__name" data-slot="name">&nbsp;</p>
     </div>
+    <!-- Инлайн-нав появляется только на 1024+, вместо бургера -->
+    <nav class="header-nav" aria-label="Контакты">
+      <a class="header-nav__link" data-link="hh" target="_blank" rel="noopener">HH.ru</a>
+      <a class="header-nav__link" data-link="email" data-slot="emailDisplay"></a>
+      <a class="header-nav__link" data-link="telegram" target="_blank" rel="noopener">Telegram</a>
+      <a class="header-nav__resume chip" data-link="resume" target="_blank" rel="noopener" download>
+        Резюме
+        <img src="images/icons/download.svg" alt="" width="24" height="24" />
+      </a>
+    </nav>
     <button class="burger" type="button" aria-label="Открыть меню" aria-controls="menu" aria-expanded="false">
       <img class="burger__icon burger__icon--open"  src="images/icons/burger.svg" alt="" width="24" height="24" />
       <img class="burger__icon burger__icon--close" src="images/icons/close.svg"  alt="" width="24" height="24" />
@@ -74,7 +84,7 @@
 
     <!-- Контакты -->
     <section class="section section--contacts" id="contacts" aria-labelledby="contacts-title">
-      <p class="contacts-watermark" id="contacts-title">Свяжитесь со мной</p>
+      <p class="contacts-watermark" id="contacts-title">Связаться со мной</p>
       <div class="contacts-list">
         <a class="contact-card" data-link="telegram" target="_blank" rel="noopener">
           <span class="contact-card__text">

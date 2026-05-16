@@ -10,16 +10,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    /* Картинки-коллажи (несколько скринов в одном файле) — показываем целиком */
-    .case-media__image img,
-    .case-beforeafter__media img {
-      border-radius: var(--radius-chip);
-    }
-    /* Убираем внутреннюю подложку под картинками — оставляем только внешнюю карточку */
+    /* Картинки-коллажи (несколько скринов в одном файле) — показываем целиком, без серой подложки */
+    .case-media__image img { border-radius: var(--radius-chip); }
     .case-media__image { background: transparent; }
-    /* Внутри До/После убираем серую подложку и скругления под "После" — картинка с пояснениями заполняет фрейм сама */
-    .case-beforeafter__block:last-child .case-beforeafter__media,
-    .case-beforeafter__block:last-child .case-beforeafter__media img { background: transparent; border-radius: 0; }
+    /* «После» в блоке До/После: убираем скругление (чтобы аннотации не обрезались)
+       и фиксируем ширину по фигме — 311 на мобиле, 412 на 768, 552 на 1024 */
+    .case-compare__block:last-child .case-compare__media,
+    .case-compare__block:last-child .case-compare__media picture,
+    .case-compare__block:last-child .case-compare__media img,
+    .case-compare__block:last-child .case-compare__media svg { border-radius: 0; }
+    .case-compare__block:last-child .case-compare__media { max-width: 311px; }
+    @media (min-width: 768px) {
+      .case-compare__block:last-child .case-compare__media { max-width: 412px; }
+      /* На 768 До/После идут в ряд: До 244px слева, после 412px справа, gap 16 */
+      .case-compare {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .case-compare__block:first-child {
+        flex: 0 0 244px;
+        /* В фигме «До» начинается на y=245 от верха карточки, у нас padding 24 → +221 сверху */
+        margin-top: 221px;
+      }
+      .case-compare__block:last-child  { flex: 0 0 412px; }
+    }
+    @media (min-width: 1024px) {
+      /* Заголовок: Figma w-[647px] (946:6823) — на блок с padding 40 → 647+80 */
+      .case-title { max-width: calc(647px + 80px); }
+      /* Figma 1024 (946:6921): До 336×897 слева на y=210, После 552×1983 справа, gap 24.
+         case-compare имеет padding 32 → margin-top «До» = 210 − 32 = 178 */
+      .case-compare { gap: 24px; }
+      .case-compare__block:first-child {
+        flex: 0 0 336px;
+        margin-top: 178px;
+      }
+      .case-compare__block:last-child  { flex: 0 0 552px; }
+      .case-compare__block:last-child .case-compare__media { max-width: 552px; }
+    }
   </style>
 </head>
 <body>
@@ -59,34 +87,34 @@
     <h3 class="case-h3 case-h3--tight">Контекст</h3>
     <p class="case-p">FIT SERVICE — федеральная сеть из 346+ постгарантийных автосервисов. Через приложение записываются на ТО, смотрят историю обслуживания, пользуются программой лояльности.</p>
 
-    <h3 class="case-h3">Проблема</h3>
+    <h3 class="case-h3 case-h3--snug">Проблема</h3>
     <p class="case-p">Пользователи заходят в лояльность, но не записываются на СТО.</p>
 
-    <h3 class="case-h3">Задача</h3>
+    <h3 class="case-h3 case-h3--snug">Задача</h3>
     <p class="case-p">Увеличить конверсию в запись на СТО со страницы лояльности.</p>
 
-    <h3 class="case-h3">Цель бизнеса</h3>
+    <h3 class="case-h3 case-h3--snug">Цель бизнеса</h3>
     <p class="case-p">Рост вовлечения в Лояльность.</p>
 
-    <h3 class="case-h3">Миссия для пользователя</h3>
+    <h3 class="case-h3 case-h3--snug">Миссия для пользователя</h3>
     <p class="case-p">Иметь понятный и информативный раздел, в котором можно познакомиться с преимуществами Лояльности.</p>
 
-    <h3 class="case-h3">Аудитория</h3>
+    <h3 class="case-h3 case-h3--snug">Аудитория</h3>
     <p class="case-p">MAU Бонусного счёта.</p>
 
-    <h3 class="case-h3">Цель минимум</h3>
+    <h3 class="case-h3 case-h3--snug">Цель минимум</h3>
     <div class="case-list"><ul>
       <li>Вырастить CR на запись на СТО через бонусный счёт.</li>
       <li>Вырастить общий CR на запись на СТО.</li>
     </ul></div>
 
-    <h3 class="case-h3">Цель максимум</h3>
+    <h3 class="case-h3 case-h3--snug">Цель максимум</h3>
     <div class="case-list"><ul>
       <li>Вырастить retention в бонусный счёт.</li>
       <li>Вырастить CSAT среди пользователей лояльности.</li>
     </ul></div>
 
-    <h3 class="case-h3">Платформа</h3>
+    <h3 class="case-h3 case-h3--snug">Платформа</h3>
     <p class="case-p">Флоу спроектированы под iOS исходя из бизнес-требований в целях экономии ресурсов, в случае роста метрик будем делать на Android.</p>
 
     <!-- Figma: готовые сценарии — масштаб проекта -->
@@ -135,7 +163,7 @@
       <li>Согласовала решения с проджектом и заказчиком.</li>
     </ul></div>
 
-    <h3 class="case-h3">Взаимодействие с командой</h3>
+    <h3 class="case-h3 case-h3--snug">Взаимодействие с командой</h3>
     <div class="case-list"><ul>
       <li>Обсуждала решения с проджектом и разработчиками.</li>
       <li>Подготавливала макеты и описывала работу для передачи в разработку.</li>
@@ -143,25 +171,29 @@
       <li>Презентовала дизайн-решения и защищала их перед командой и бизнес-заказчиком.</li>
     </ul></div>
 
-    <h2 class="case-h2">Что получилось</h2>
+    <h2 class="case-h2 case-h2--lift">Что получилось</h2>
 
-    <!-- До / После -->
-    <div class="case-beforeafter">
-      <div class="case-beforeafter__block">
-        <p class="case-beforeafter__label">До</p>
-        <div class="case-beforeafter__media">
-          <img src="../images/cases/fit-service/before.webp" alt="Бонусный счёт — старый дизайн" loading="lazy" />
+    <!-- До / После -->
+    <div class="case-compare">
+      <div class="case-compare__block">
+        <p class="case-compare__label">До</p>
+        <div class="case-compare__media">
+          <img src="../images/cases/fit-service/before.webp" alt="Бонусный счёт — старый дизайн" loading="lazy" />
         </div>
       </div>
-      <div class="case-beforeafter__block">
-        <div class="case-beforeafter__media">
-          <img src="../images/cases/fit-service/after.webp" alt="Бонусный счёт — новый дизайн с пояснениями к гипотезам" loading="lazy" />
+      <div class="case-compare__block">
+        <div class="case-compare__media">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="../images/cases/fit-service/after-1024.svg" />
+            <source media="(min-width: 768px)" srcset="../images/cases/fit-service/after-768.webp" />
+            <img src="../images/cases/fit-service/after.webp" alt="Бонусный счёт — новый дизайн с пояснениями к гипотезам" loading="lazy" />
+          </picture>
         </div>
       </div>
     </div>
 
     <!-- Финальные мокапы — тёмная тема -->
-    <div class="case-media">
+    <div class="case-media case-media--p12">
       <div class="case-media__image">
         <img src="../images/cases/fit-service/final.webp" alt="Финальные экраны Бонусного счёта в тёмной теме" loading="lazy" />
       </div>
@@ -186,9 +218,10 @@
     </div>
 
     <h3 class="case-h3">Результаты</h3>
-    <p class="case-p">Провели A/B-тест на 20к пользователей сплитом 50/50.</p>
+    <p class="case-p">Провели A/B тест на 20к пользователей сплитом 50/50</p>
 
-    <div class="case-results">
+    <!-- Мобильный layout: 2 + 2 + 1 -->
+    <div class="case-results case-results--mobile">
       <div class="case-result-row">
         <div class="case-result-cell">
           <p class="case-result-cell__label">CR в запись в Бонусном счёте</p>
@@ -205,7 +238,7 @@
       <div class="case-result-row">
         <div class="case-result-cell">
           <p class="case-result-cell__label">Retention Rate</p>
-          <p class="case-result-cell__value">+ 3 %</p>
+          <p class="case-result-cell__value">+ 3 %</p>
           <p class="case-result-cell__delta">27% → 30%</p>
         </div>
         <div class="metric__divider" aria-hidden="true"></div>
@@ -220,6 +253,75 @@
           <p class="case-result-cell__label">CR в «Забрать подарок»</p>
           <p class="case-result-cell__value">+2%</p>
           <p class="case-result-cell__delta">14% → 16%</p>
+        </div>
+      </div>
+    </div>
+    <!-- Layout 1024: один ряд из 5 -->
+    <div class="case-results case-results--desktop">
+      <div class="case-result-row">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в запись в Бонусном счёте</p>
+          <p class="case-result-cell__value">+1.2%</p>
+          <p class="case-result-cell__delta">7,1% → 8,3%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Общий CR в запись</p>
+          <p class="case-result-cell__value">+0.2%</p>
+          <p class="case-result-cell__delta">4,8% → 5,0%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Retention Rate</p>
+          <p class="case-result-cell__value">+ 3 %</p>
+          <p class="case-result-cell__delta">27% → 30%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CSAT</p>
+          <p class="case-result-cell__value">+1.2</p>
+          <p class="case-result-cell__delta">3.4 / 5 → 4.2 / 5</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в «Забрать подарок»</p>
+          <p class="case-result-cell__value">+2%</p>
+          <p class="case-result-cell__delta">14% → 16%</p>
+        </div>
+      </div>
+    </div>
+    <!-- Layout от 768: 3 + 2 -->
+    <div class="case-results case-results--tablet">
+      <div class="case-result-row">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в запись в Бонусном счёте</p>
+          <p class="case-result-cell__value">+1.2%</p>
+          <p class="case-result-cell__delta">7,1% → 8,3%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Общий CR в запись</p>
+          <p class="case-result-cell__value">+0.2%</p>
+          <p class="case-result-cell__delta">4,8% → 5,0%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">Retention Rate</p>
+          <p class="case-result-cell__value">+ 3 %</p>
+          <p class="case-result-cell__delta">27% → 30%</p>
+        </div>
+      </div>
+      <div class="case-result-row">
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CR в «Забрать подарок»</p>
+          <p class="case-result-cell__value">+2%</p>
+          <p class="case-result-cell__delta">14% → 16%</p>
+        </div>
+        <div class="metric__divider" aria-hidden="true"></div>
+        <div class="case-result-cell">
+          <p class="case-result-cell__label">CSAT</p>
+          <p class="case-result-cell__value">+1.2</p>
+          <p class="case-result-cell__delta">3.4 / 5 → 4.2 / 5</p>
         </div>
       </div>
     </div>

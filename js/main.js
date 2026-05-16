@@ -63,10 +63,10 @@
     return `<div class="project-wrap">
       <${tag} ${attr} aria-label="${esc(p.title)} — открыть кейс">
         <div class="project__cover">
-          ${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" loading="lazy" />` : ''}
-          <span class="project__arrow" aria-hidden="true">
-            <img src="images/icons/arrow-forward-m.svg" alt="" width="24" height="24" />
-          </span>
+          ${p.image ? `<picture>
+            ${p.image1024 ? `<source media="(min-width: 1024px)" srcset="${esc(p.image1024)}" />` : ''}
+            <img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" loading="lazy" />
+          </picture>` : ''}
         </div>
         <div class="project__body">
           <h3 class="project__title">${esc(p.title)}</h3>
@@ -82,6 +82,9 @@
           </p>
           ${metricsSection}
         </div>
+        <span class="project__arrow" aria-hidden="true">
+          <img src="images/icons/arrow-forward-m.svg" alt="" width="24" height="24" />
+        </span>
       </${tag}>
     </div>`;
   }
@@ -89,14 +92,16 @@
 
   /* ---------- Рендер шота ---------- */
 
-  function renderShot(s) {
+  function renderShot(s, index) {
     const sizeClass = `shot--${s.size || 'square'}`;
     const hasVideo = !!(s.video && s.video.trim());
     const hasImage = !!(s.image && s.image.trim());
     const hasBacking = !!(s.backing && s.backing.trim());
     const idClass = s.shotId ? ` shot--${s.shotId}` : '';
     const backingClass = hasBacking ? ' shot--has-backing' : '';
-    const backingStyle = hasBacking ? ` style="background-image:url('${esc(s.backing)}')"` : '';
+    const styleParts = [`--shot-order:${index}`];
+    if (hasBacking) styleParts.push(`background-image:url('${esc(s.backing)}')`);
+    const inlineStyle = ` style="${styleParts.join(';')}"`;
     const mediaClass = hasBacking ? 'shot__media' : 'shot__img';
 
     let media = '';
@@ -114,7 +119,7 @@
       media = `<div class="shot__placeholder"><span>Картинка «${esc(s.label)}» пока не загружена</span></div>`;
     }
 
-    return `<figure class="shot ${sizeClass}${backingClass}${idClass}"${backingStyle}>
+    return `<figure class="shot ${sizeClass}${backingClass}${idClass}"${inlineStyle}>
       ${media}
       <figcaption class="shot__label">${esc(s.label)}</figcaption>
     </figure>`;
@@ -167,7 +172,17 @@
     if (projectsHost) projectsHost.innerHTML = (data.projects || []).map(renderProject).join('');
 
     const shotsHost = document.querySelector('[data-slot="shots"]');
-    if (shotsHost) shotsHost.innerHTML = (data.shots || []).map(renderShot).join('');
+    if (shotsHost) {
+      const shots = data.shots || [];
+      const col1 = [], col2 = [];
+      shots.forEach((s, i) => {
+        const html = renderShot(s, i);
+        ((s.tabletColumn ?? 1) === 2 ? col2 : col1).push(html);
+      });
+      shotsHost.innerHTML =
+        `<div class="shots-col">${col1.join('')}</div>` +
+        `<div class="shots-col">${col2.join('')}</div>`;
+    }
   }
 
   document.addEventListener('DOMContentLoaded', async () => {

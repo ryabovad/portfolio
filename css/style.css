@@ -78,9 +78,9 @@ p, figure { margin: 0; }
 
 /* ============================================================
    ШАПКА
-   Figma: position absolute, top 0, pt-40 pb-20 px-20
+   Figma: position absolute, top 0, pt-40 pb-20 px-24
    В вебе делаем sticky чтобы всегда была видна при скролле.
-   pt-40 = 40px (под статус-бар iOS), pb-20, px-20.
+   pt-40 = 40px (под статус-бар iOS), pb-20, px-24.
    ============================================================ */
 
 .header {
@@ -91,7 +91,7 @@ p, figure { margin: 0; }
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 40px 20px 20px;
+  padding: 40px 24px 20px;
   background: var(--bg);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
   /* Компенсируем системный статус-бар на iOS WebKit */
@@ -144,6 +144,9 @@ p, figure { margin: 0; }
   transition: opacity .2s ease;
 }
 .burger:active { opacity: 0.6; }
+
+/* Инлайн-нав в шапке — видна только на 1024+ */
+.header-nav { display: none; }
 
 /* Иконка переключается через body.menu-open */
 .burger__icon--close { display: none; }
@@ -205,15 +208,18 @@ body.menu-open .burger__icon--close { display: block; }
   line-height: 24px;
   padding: 10px 4px;
   word-break: break-word;
-  transition: opacity .2s ease;
+  transition: color .2s ease;
 }
-.menu__link:active { opacity: 0.6; }
+@media (hover: hover) {
+  .menu__link:hover { color: rgba(245, 245, 245, 0.6); }
+}
+.menu__link:active { color: rgba(245, 245, 245, 0.4); }
 .menu__link[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; }
 
 .menu__resume-wrap {
   display: flex;
   justify-content: center;
-  padding: 8px 0 10px;
+  padding: 10px 0;
 }
 
 .menu__resume.chip {
@@ -222,13 +228,16 @@ body.menu-open .burger__icon--close { display: block; }
   gap: 4px;
   background: var(--chip);
   border-radius: var(--radius-pill);
-  padding: 10px 16px;
+  padding: 12px 12px 12px 20px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
-  transition: transform .15s ease, opacity .2s ease;
+  transition: color .2s ease, transform .15s ease;
 }
-.menu__resume.chip:active { transform: scale(0.97); }
+@media (hover: hover) {
+  .menu__resume.chip:hover { color: rgba(245, 245, 245, 0.6); }
+}
+.menu__resume.chip:active { color: rgba(245, 245, 245, 0.4); transform: scale(0.97); }
 .menu__resume.chip[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; opacity: .7; }
 
 
@@ -289,7 +298,7 @@ body.menu-open .burger__icon--close { display: block; }
 
 .hero__description {
   margin: 0;
-  padding: 4px 20px 6px;
+  padding: 2px 20px 6px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
@@ -346,6 +355,7 @@ body.menu-open .burger__icon--close { display: block; }
 }
 
 .project {
+  position: relative;
   display: block;
   width: 100%;
   background: var(--card);
@@ -359,7 +369,6 @@ body.menu-open .burger__icon--close { display: block; }
 .project__cover {
   position: relative;
   aspect-ratio: 343 / 280;
-  background: var(--chip);
   overflow: hidden;
   border-radius: var(--radius-card);
 }
@@ -373,7 +382,7 @@ body.menu-open .burger__icon--close { display: block; }
   position: absolute;
   top: 16px; right: 16px;
   width: 44px; height: 44px;
-  background: #212121;
+  background: #2e2e2e;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -404,7 +413,7 @@ body.menu-open .burger__icon--close { display: block; }
 
 /* px-20 py-2 */
 .project__paragraph { margin: 0; padding: 2px 20px; font-size: 16px; line-height: 24px; font-weight: 600; }
-.project__paragraph:last-child { padding-bottom: 16px; }
+.project__paragraph:last-child { padding-bottom: 20px; }
 .project__paragraph-label { color: var(--text-dim); }
 
 /* p-16, gap-12 между блоками метрик */
@@ -416,18 +425,21 @@ body.menu-open .burger__icon--close { display: block; }
   justify-content: space-between;
   background: var(--chip);
   border-radius: var(--radius-chip);
-  padding: 10px 16px;
+  padding: 14px 16px;
 }
+/* Второй (и далее) ряд метрик: min-height 96, может растягиваться (на 768 ряды
+   в одну линию через flex-stretch — обе уравняются по самому высокому контенту) */
+.metrics-row + .metrics-row { min-height: 96px; }
 
 .metric {
-  width: 124px;
-  flex-shrink: 0;
+  flex: 1 0 0;
+  min-width: 0;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 8px; text-align: center;
+  gap: 10px; text-align: center;
 }
-.metric__label { font-size: 16px; line-height: 24px; font-weight: 600; }
-.metric__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; white-space: nowrap; }
+.metric__label { font-size: 16px; line-height: 24px; font-weight: 600; max-width: 124px; }
+.metric__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; white-space: nowrap; max-width: 124px; }
 
 .metric__divider {
   width: 1px; height: 48px;
@@ -438,13 +450,13 @@ body.menu-open .burger__icon--close { display: block; }
 
 /* ============================================================
    UI ШОТЫ
-   Figma: заголовок pb-4 pt-24 px-20 (в отдельном контейнере)
+   Figma: заголовок pb-4 pt-32 pl-24 pr-20 (в отдельном контейнере)
            список pt-12 pb-8 px-16, gap-16
    ============================================================ */
 
 .shots-heading {
   width: 100%;
-  padding: 24px 20px 4px 24px;
+  padding: 32px 20px 4px 24px;
 }
 
 .shots-heading h2 {
@@ -460,9 +472,13 @@ body.menu-open .burger__icon--close { display: block; }
   padding: 12px 16px 8px;
   display: flex;
   flex-direction: column;
-  gap: 16px;        /* ИСПРАВЛЕНИЕ: 16px вместо 24px */
+  gap: 16px;
   align-items: center;
 }
+
+/* Колонки шотов: на мобиле прозрачные (display: contents),
+   шоты идут как прямые flex-child'ы контейнера в порядке content.json через order */
+.shots-col { display: contents; }
 
 .shot {
   position: relative;
@@ -470,6 +486,7 @@ body.menu-open .burger__icon--close { display: block; }
   background: #252525;
   border-radius: var(--radius-card);
   overflow: hidden;
+  order: var(--shot-order, 0);
 }
 
 .shot--square  { aspect-ratio: 1 / 1; }
@@ -539,7 +556,7 @@ video.shot__img {
 
 /* ============================================================
    КОНТАКТЫ
-   Figma: watermark pt-32 pb-4 px-16
+   Figma: watermark pt-48 pb-4 px-24 (px-16 секции + px-8 ватермарка = 24)
            chips row pt-8 pb-24 px-16
    ============================================================ */
 
@@ -547,11 +564,11 @@ video.shot__img {
 
 .contacts-watermark {
   margin: 0;
-  padding: 32px 8px 4px;
+  padding: 48px 8px 4px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 36px;
-  line-height: 1;
+  font-size: 32px;
+  line-height: normal;
   color: var(--chip);
   user-select: none;
 }
@@ -611,7 +628,8 @@ video.shot__img {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 24px 20px 20px;
+  padding: 40px 24px 20px;
+  padding-top: max(40px, env(safe-area-inset-top));
   background: var(--bg);
   border-radius: 0 0 var(--radius-card) var(--radius-card);
   transition: transform .25s ease;
@@ -665,6 +683,7 @@ video.shot__img {
   font-weight: 700; font-size: 24px; line-height: 32px;
 }
 .case-h2--tight { padding-top: 16px; }
+.case-h2--lift  { padding-top: 40px; }
 
 .case-h3 {
   margin: 0;
@@ -672,8 +691,10 @@ video.shot__img {
   font-family: var(--font-text);
   font-weight: 800; font-size: 20px; line-height: 28px;
 }
-.case-h3--tight { padding-top: 16px; }
-.case-h3--bare  { padding-top: 8px; }
+.case-h3--tight   { padding-top: 16px; }
+.case-h3--snug    { padding-top: 20px; }
+.case-h3--bare    { padding-top: 8px; }
+.case-h3--feature { padding-bottom: 8px; }
 
 .case-p { margin: 0; padding: 8px 24px; font-size: 16px; line-height: 24px; font-weight: 600; }
 
@@ -688,11 +709,12 @@ video.shot__img {
 
 .case-media {
   margin: 16px 16px; padding: 16px;
-  background: var(--card); border-radius: var(--radius-card);
+  background: #252525; border-radius: var(--radius-card);
   overflow: hidden;
   display: flex; flex-direction: column; gap: 12px;
 }
 .case-media--p24 { margin: 24px 16px; }
+.case-media--p12 { margin: 12px 16px; }
 
 .case-media__image {
   width: 100%; border-radius: var(--radius-chip);
@@ -728,42 +750,44 @@ video.shot__img {
 .case-callout__text { font-size: 16px; line-height: 24px; font-weight: 600; }
 
 /* До / После */
-.case-beforeafter {
+.case-compare {
   margin: 12px 16px; padding: 16px;
-  background: var(--card); border-radius: var(--radius-card);
+  background: #252525; border-radius: var(--radius-card);
   display: flex; flex-direction: column; gap: 24px;
 }
-.case-beforeafter__block { display: flex; flex-direction: column; gap: 12px; }
-.case-beforeafter__label { margin: 0; font-family: var(--font-text); font-weight: 800; font-size: 20px; line-height: 28px; }
-.case-beforeafter__media {
+.case-compare__block { display: flex; flex-direction: column; gap: 12px; }
+.case-compare__label { margin: 0; font-family: var(--font-text); font-weight: 800; font-size: 20px; line-height: 28px; }
+.case-compare__media {
   width: 100%; border-radius: var(--radius-chip);
-  overflow: hidden; background: var(--chip);
-  min-height: 200px; display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
-.case-beforeafter__media img { width: 100%; height: auto; display: block; }
+.case-compare__media img { width: 100%; height: auto; display: block; }
 
 /* Сетка гипотез */
-.case-hypotheses { margin: 12px 16px; padding: 16px; background: var(--card); border-radius: var(--radius-card); }
+.case-hypotheses { margin: 12px 16px; padding: 16px; background: #252525; border-radius: var(--radius-card); }
 .case-hypotheses__grid { display: flex; flex-direction: column; gap: 8px; }
-.case-hypothesis { padding: 14px 16px; border-radius: var(--radius-chip); font-size: 14px; line-height: 20px; font-weight: 600; }
+.case-hypothesis { padding: 14px 16px; border-radius: var(--radius-chip); font-size: 14px; line-height: 20px; font-weight: 600; overflow-wrap: anywhere; min-width: 0; }
 .case-hypothesis--good { background: var(--good-bg); }
 .case-hypothesis--bad  { background: var(--bad-bg); }
 
 /* Инсайты */
-.case-insights-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px 8px; }
-.case-insight { display: flex; flex-direction: column; gap: 8px; }
-.case-insight__delta { background: var(--good-bg); border-radius: 12px; padding: 10px 14px; text-align: center; font-family: var(--font-text); font-weight: 800; font-size: 14px; line-height: 22px; }
-.case-insight__label { background: var(--chip); border-radius: var(--radius-chip); padding: 10px 14px; text-align: center; font-size: 14px; line-height: 22px; font-weight: 600; flex: 1; display: flex; align-items: center; justify-content: center; }
-.case-insight-summary { margin-top: 16px; background: var(--chip); border-radius: var(--radius-chip); padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.case-insights-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.case-insight { display: flex; flex-direction: column; gap: 4px; }
+.case-insight__delta { background: var(--good-bg); border-radius: 12px; padding: 14px 16px; text-align: center; font-family: var(--font-text); font-weight: 800; font-size: 14px; line-height: 22px; }
+.case-insight__label { background: var(--chip); border-radius: var(--radius-chip); padding: 14px 16px; text-align: center; font-size: 14px; line-height: 22px; font-weight: 600; flex: 1; display: flex; align-items: center; justify-content: center; }
+.case-insight-summary { margin-top: 16px; background: var(--chip); border-radius: var(--radius-chip); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
 .case-insight-summary__icon { width: 24px; height: 24px; }
 .case-insight-summary__text { font-size: 14px; line-height: 22px; font-weight: 600; }
 
 /* Результаты */
-.case-results { padding: 8px 16px; display: flex; flex-direction: column; gap: 12px; }
-.case-result-row { background: #252525; border-radius: 24px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+.case-results { padding: 12px 16px; display: flex; flex-direction: column; gap: 12px; }
+/* По умолчанию виден --mobile, --tablet прячется на мобиле и появляется на 768+ */
+.case-results--tablet,
+.case-results--desktop { display: none; }
+.case-result-row { background: #252525; border-radius: 24px; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
 .case-result-row--solo { justify-content: center; gap: 20px; }
-.case-result-cell { flex: 1 0 0; min-width: 124px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; }
-.case-result-cell__label { font-size: 16px; line-height: 24px; font-weight: 600; }
+.case-result-cell { flex: 1 0 0; min-width: 124px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
+.case-result-cell__label { font-size: 16px; line-height: 24px; font-weight: 600; max-width: 124px; }
 .case-result-cell__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; padding-top: 4px; }
 .case-result-cell__delta { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--text-dim); letter-spacing: -0.07px; white-space: nowrap; }
 
@@ -783,8 +807,8 @@ video.shot__img {
 .case-write__btn:active { transform: scale(0.97); }
 
 /* Figma thumb */
-.case-figma-thumb { margin: 12px 16px 48px; padding: 16px; background: var(--card); border-radius: var(--radius-card); overflow: hidden; }
-.case-figma-thumb__inner { width: 100%; aspect-ratio: 1133/612; background: var(--chip); border-radius: var(--radius-chip); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 12px; }
+.case-figma-thumb { margin: 12px 16px 48px; padding: 16px; background: #252525; border-radius: var(--radius-card); overflow: hidden; }
+.case-figma-thumb__inner { width: 100%; aspect-ratio: 311/156; background: var(--chip); border-radius: var(--radius-chip); display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 12px; }
 .case-figma-thumb__inner img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-chip); }
 
 
@@ -848,12 +872,13 @@ body.menu-open { overflow: hidden; }
     flex-wrap: nowrap;
   }
   .hero__title-line:first-child {
-    padding: 24px 4px 4px 28px;
+    padding: 24px 8px 4px 28px;
     white-space: nowrap;
   }
   .hero__title-row {
-    padding: 4px 32px 4px 0;
+    padding: 24px 32px 4px 0;
     align-items: center;
+    gap: 4px;
   }
   .hero__title-row .hero__title-line {
     padding: 0;
@@ -878,11 +903,10 @@ body.menu-open { overflow: hidden; }
     aspect-ratio: 720 / 556;
   }
 
-  /* Стрелка: 56×56, фон #212121 (темнее чем на мобилке) */
+  /* Стрелка: 56×56 */
   .project__arrow {
     width: 56px;
     height: 56px;
-    background: #212121;
     top: 24px;
     right: 24px;
   }
@@ -909,14 +933,14 @@ body.menu-open { overflow: hidden; }
   .project__metrics {
     flex-direction: row;
     gap: 0;
-    padding: 0 16px 16px;
+    padding: 24px;
     background: none;
   }
 
   .metrics-row {
     flex: 1 0 0;
     border-radius: 0;
-    padding: 10px 0;
+    padding: 14px 0;
     gap: 0;
   }
 
@@ -934,40 +958,52 @@ body.menu-open { overflow: hidden; }
   /* Если только одна строка метрик — полное скругление */
   .metrics-row:only-child {
     border-radius: var(--radius-chip);
-    padding: 10px 16px;
+    padding: 14px 16px;
   }
-  /* Разделитель между группами метрик */
+  /* Разделитель между группами метрик — 48px высота, как у внутренних дивайдеров */
   .metrics-row + .metrics-row {
-    border-left: 1px solid var(--divider);
+    position: relative;
+  }
+  .metrics-row + .metrics-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 48px;
+    background: var(--divider);
   }
 
   .metric {
     width: auto;
     flex: 1 0 0;
   }
-  .metric__label { font-size: 16px; }
+  .metric__label { font-size: 16px; max-width: 124px; }
 
   /* ---------- UI шоты ---------- */
 
-  /* Заголовок: px-28 */
+  /* Заголовок: pt-40 px-40 pb-4 */
   .shots-heading {
-    padding: 24px 28px 4px;
+    padding: 40px 40px 4px;
   }
 
-  /* 2-колоночный грид */
+  /* 2-колоночный layout: колонки тянут шоты по их естественному аспекту, без принудительного выравнивания рядов */
   .shots-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
     gap: 16px;
     padding: 8px 24px;
+    align-items: flex-start;
   }
-
-  /* Crypto → col1 row1 | E-commerce → col2 row1
-     Analytics → col2 row2 | Task Manager → col1 row2 */
-  .shot:nth-child(1) { grid-column: 1; grid-row: 1; }
-  .shot:nth-child(2) { grid-column: 2; grid-row: 1; }
-  .shot:nth-child(3) { grid-column: 2; grid-row: 2; }
-  .shot:nth-child(4) { grid-column: 1; grid-row: 2; }
+  .shots-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 0 0;
+    min-width: 0;
+  }
+  /* Внутри колонок порядок шотов — DOM-порядок, order на мобиле теперь не мешает */
+  .shot { order: 0; }
 
   /* Figma 768: tall 346×502, medium 346×302, short 346×288 */
   .shot--tall   { aspect-ratio: 346 / 502; }
@@ -981,12 +1017,12 @@ body.menu-open { overflow: hidden; }
   }
 
   .contacts-watermark {
-    font-size: 76px;
+    font-size: 70px;
     padding: 48px 28px 4px;
   }
 
   .contacts-list {
-    padding: 8px 24px 24px;
+    padding: 6px 24px 48px;
   }
 
   .contact-card {
@@ -1025,86 +1061,143 @@ body.menu-open { overflow: hidden; }
      КЕЙСЫ — 768px
      ====================================================== */
 
-  /* Шапка кейса */
+  /* Шапка кейса: px-40 pb-28 в фигме, pt с учётом safe-area */
   .case-header {
-    padding: 24px 28px 0;
+    padding: 40px 40px 28px;
+    padding-top: max(40px, env(safe-area-inset-top));
   }
 
   /* Заголовок кейса:
-     В Figma pt-124 (под абсолютным header).
-     У нас header sticky — оставляем небольшой отступ. */
+     В Figma pt-124 (под абсолютным header). Header в потоке высотой
+     40+44+28 = 112, плюс 12 запас → pt-12. */
   .case-title {
-    padding: 24px 28px 4px;
+    padding: 12px 40px 4px;
   }
 
   .case-meta {
-    padding: 16px 28px;
+    padding: 16px 40px;
   }
 
   .case-h2 {
-    padding: 32px 28px 4px;
+    padding: 32px 40px 4px;
     font-size: 24px;
     line-height: 32px;
   }
+  /* Перерегистрируем модификаторы внутри @768, чтобы padding-shorthand выше их не затирал */
+  .case-h2--tight { padding-top: 16px; }
+  .case-h2--lift  { padding-top: 40px; }
 
   .case-h3 {
-    padding: 24px 28px 4px;
+    padding: 24px 40px 4px;
     font-size: 20px;
     line-height: 28px;
   }
-
-  .case-h3--tight { padding-top: 16px; }
+  .case-h3--tight   { padding-top: 16px; }
+  .case-h3--snug    { padding-top: 20px; }
+  .case-h3--bare    { padding-top: 8px; }
+  .case-h3--feature { padding-bottom: 8px; }
 
   .case-p {
-    padding: 8px 28px;
+    padding: 8px 40px;
   }
 
   .case-list {
-    padding: 8px 28px;
+    padding: 8px 40px;
   }
 
   .case-callout {
-    padding: 8px 28px;
+    padding: 8px 40px;
   }
 
   /* Медиа-контейнеры */
   .case-media {
-    margin: 8px 24px;
+    margin: 16px 24px;
     padding: 24px;
     border-radius: 40px;
+    gap: 20px;
   }
   .case-media--p24 {
     margin: 24px;
   }
+  .case-media--p12 {
+    margin: 14px 24px;
+  }
 
-  /* До / После → в ряд */
-  .case-beforeafter {
-    flex-direction: row;
-    gap: 24px;
-    margin: 8px 24px;
+  /* До / После: в фигме на 768 столбцом (как на мобиле), отступы крупнее */
+  .case-compare {
+    margin: 14px 24px;
     padding: 24px;
     border-radius: 40px;
   }
-  .case-beforeafter__block { flex: 1 0 0; }
 
   /* Гипотезы → 4 колонки */
   .case-hypotheses {
-    margin: 8px 24px;
+    margin: 14px 24px;
     padding: 24px;
     border-radius: 40px;
   }
   .case-hypotheses__grid {
-    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
   }
 
-  /* Инсайты → 4 колонки */
-  .case-insights-grid {
+  /* Инсайты на 768 (Figma 934:4953): grid 4 cols, 2 rows.
+     Row 1 — 4 плитки (h-128), row 2 — 2 плитки + summary на col 3-4.
+     .case-insights-grid делаем display:contents, чтобы плитки и summary
+     стали прямыми детьми .case-hypotheses-grid */
+  .case-hypotheses:has(.case-insights-grid) {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 128px auto;
+    gap: 16px;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insights-grid {
+    display: contents;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insight {
+    width: auto;
+    height: auto;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insight-summary {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+    margin-top: 0;
+    padding: 14px 16px;
+  }
+  /* Плитки секунд/лейблов: px-14 py-10 12/18, лейбл с min-height 86 */
+  .case-insights-grid .case-insight__delta {
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .case-insights-grid .case-insight__label {
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 18px;
+    flex: none;
+    min-height: 86px;
+  }
+  .case-insight-summary__text {
+    font-size: 12px;
+    line-height: 18px;
   }
 
-  /* Результаты */
-  .case-results {
-    padding: 8px 24px;
+  /* Результаты — на 768 показываем --tablet (3+2), прячем --mobile */
+  .case-results--mobile { display: none; }
+  .case-results--tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 14px 24px;
+  }
+  .case-results--tablet .case-result-row {
+    padding: 12px 16px;
+    justify-content: space-between;
+  }
+  .case-results--tablet .case-result-cell {
+    flex: 1 0 0;
+    min-width: 0;
   }
 
   /* Outro + кнопка «Написать» — в одну строку */
@@ -1113,7 +1206,7 @@ body.menu-open { overflow: hidden; }
     flex-direction: row;
     align-items: center;
     gap: 40px;
-    padding: 48px 28px 4px;
+    padding: 48px 40px 4px;
   }
   .case-outro-wrap .case-outro {
     flex: 1 0 0;
@@ -1131,9 +1224,431 @@ body.menu-open { overflow: hidden; }
   }
 
   .case-figma-thumb {
-    margin: 8px 24px 48px;
+    margin: 14px 24px 48px;
     border-radius: 40px;
     padding: 24px;
+  }
+
+}
+
+
+/* ============================================================
+   1024px — главная: широкая ширина, inline-нав, горизонтальные
+   карточки проектов, увеличенные шрифты и отступы
+   Figma node: 934:5428
+   ============================================================ */
+
+@media (min-width: 1024px) {
+
+  /* ---------- Шапка: бургер прячется, нав справа ---------- */
+  .burger { display: none; }
+  .menu { display: none; }
+  /* Если меню было открыто на мобиле и ресайз до 1024 — разлочиваем scroll */
+  body.menu-open { overflow: auto; }
+
+  .user__avatar { width: 48px; height: 48px; }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-nav__link {
+    height: 60px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    transition: color .2s ease;
+  }
+  @media (hover: hover) {
+    .header-nav__link:hover { color: rgba(245, 245, 245, 0.6); }
+  }
+  .header-nav__link:active { color: rgba(245, 245, 245, 0.4); }
+  .header-nav__link[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; }
+
+  .header-nav__resume.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+    background: var(--chip);
+    border-radius: var(--radius-pill);
+    padding: 12px 12px 12px 20px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    transition: color .2s ease, transform .15s ease;
+  }
+  @media (hover: hover) {
+    .header-nav__resume.chip:hover { color: rgba(245, 245, 245, 0.6); }
+  }
+  .header-nav__resume.chip:active { color: rgba(245, 245, 245, 0.4); transform: scale(0.97); }
+  .header-nav__resume.chip[aria-disabled="true"] { color: var(--text-dim); pointer-events: none; opacity: .7; }
+
+
+  /* ---------- Hero ---------- */
+  .hero-wrap {
+    padding: 12px 24px 12px;
+  }
+  .hero {
+    border-radius: 48px;
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.25));
+  }
+  .hero__title {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 44px;
+    line-height: 52px;
+  }
+  .hero__title-line:first-child {
+    padding: 40px 10px 4px 36px;
+    white-space: nowrap;
+  }
+  .hero__title-row {
+    padding: 40px 32px 4px 0;
+    align-items: center;
+    gap: 4px;
+  }
+  .hero__title-row .hero__title-line {
+    padding: 0;
+    white-space: nowrap;
+  }
+  .hero__flower { width: 48px; height: 48px; }
+  .hero__description {
+    padding: 4px 36px 8px;
+    max-width: 720px;
+  }
+  .hero__tags {
+    padding: 24px 32px 32px;
+  }
+  .tag {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+
+  /* ---------- Проекты — горизонтальная раскладка ---------- */
+  .section--projects { padding: 0 24px; }
+  .project-wrap { padding: 12px 0; }
+
+  .project {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: 48px;
+  }
+  /* Первый проект (FIT): body слева, обложка справа */
+  .project-wrap:nth-child(odd) .project { flex-direction: row-reverse; }
+  /* Второй проект (Disco): обложка слева, body справа — DOM-порядок */
+
+  .project__cover, .project__body { flex: 1 0 0; min-width: 0; }
+
+  .project-wrap:nth-child(odd) .project__cover { aspect-ratio: 488 / 660; }
+  .project-wrap:nth-child(even) .project__cover { aspect-ratio: 488 / 534; }
+
+  .project__arrow {
+    top: 32px; right: 32px;
+    width: 72px; height: 72px;
+    background: #2e2e2e;
+  }
+  .project__arrow img { width: 32px; height: 32px; }
+
+  .project__title {
+    padding: 32px 36px 8px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .project__meta {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 36px 6px;
+    align-items: baseline;
+  }
+  .project__paragraph {
+    padding: 2px 36px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .project__paragraph-label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Метрики — назад в столбец, гэп между рядами 12, padding 32, прижаты к низу */
+  .project__metrics {
+    flex: 1 0 0;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 32px;
+    background: none;
+  }
+  .metrics-row {
+    flex: none;
+    width: 100%;
+    background: var(--chip);
+    border-radius: var(--radius-chip);
+    padding: 14px 16px;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /* Сбрасываем мерж 768px-я */
+  .metrics-row:first-child,
+  .metrics-row:last-child,
+  .metrics-row:only-child {
+    border-radius: var(--radius-chip);
+    padding: 14px 16px;
+  }
+  .metrics-row + .metrics-row::before { display: none; }
+
+  .metric {
+    flex: 1 0 0;
+    min-width: 0;
+  }
+  .metric__label {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 124px;
+  }
+
+
+  /* ---------- UI шоты ---------- */
+  .shots-heading {
+    padding: 48px 40px 8px;
+  }
+  .shots-heading h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .shots-container {
+    gap: 16px;
+    padding: 12px 24px;
+  }
+  /* Аспекты под 1024 */
+  .shot--tall   { aspect-ratio: 480 / 680; }
+  .shot--medium { aspect-ratio: 480 / 408; }
+  .shot--short  { aspect-ratio: 480 / 390; }
+  /* square: 1/1 — без изменений */
+
+  .shot__label {
+    left: 24px;
+    bottom: 24px;
+    padding: 14px 24px;
+    max-width: calc(100% - 48px);
+  }
+
+
+  /* ---------- Watermark ---------- */
+  .contacts-watermark {
+    font-size: 102px;
+    padding: 64px 28px 4px;
+  }
+
+
+  /* ---------- Contact cards ---------- */
+  .contacts-list {
+    padding: 6px 24px 48px;
+  }
+  .contact-card {
+    height: 192px;
+    border-radius: 28px;
+    padding: 28px 32px;
+  }
+  .contact-card__label {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .contact-card__arrow img { width: 32px; height: 32px; }
+
+
+  /* ======================================================
+     КЕЙСЫ — 1024px
+     Figma node: 935:6397 (Дискомаркет)
+     ====================================================== */
+
+  .case-back {
+    width: 56px;
+    height: 56px;
+  }
+
+  .case-title {
+    padding: 12px 40px 4px;
+    font-size: 44px;
+    line-height: 52px;
+    letter-spacing: -0.968px;
+  }
+
+  .case-meta {
+    padding: 16px 40px;
+  }
+  .case-meta__lead { max-width: 752px; }
+
+  .case-h2 {
+    padding: 24px 40px 4px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .case-h2--tight { padding-top: 16px; }
+  .case-h2--lift  { padding-top: 48px; }
+
+  .case-h3 {
+    padding: 24px 40px 4px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .case-h3--tight   { padding-top: 16px; }
+  .case-h3--snug    { padding-top: 20px; }
+  .case-h3--bare    { padding-top: 8px; }
+  .case-h3--feature { padding-bottom: 8px; }
+
+  .case-p {
+    padding: 8px 40px;
+    max-width: calc(752px + 80px);
+  }
+
+  .case-list {
+    padding: 8px 40px;
+  }
+  .case-list ul { max-width: 752px; }
+
+  .case-callout {
+    padding: 8px 40px;
+  }
+  .case-callout__text { max-width: 752px; }
+
+  /* Медиа-контейнеры: px-24 py-28 wrap, padding 32 inner, radius 48 */
+  .case-media {
+    margin: 28px 24px;
+    padding: 32px;
+    border-radius: 48px;
+    gap: 28px;
+  }
+  .case-media--p24 {
+    margin: 28px 24px;
+  }
+  .case-media--p12 {
+    margin: 16px 24px;
+  }
+
+  /* До / После: на 1024 в Figma столбцом, отступы крупнее */
+  .case-compare {
+    margin: 16px 24px;
+    padding: 32px;
+    border-radius: 48px;
+    gap: 24px;
+  }
+  .case-compare__label {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  /* Outro + кнопка «Написать» — большой шрифт 44/52 */
+  .case-outro-wrap {
+    padding: 64px 40px 4px;
+  }
+  .case-outro-wrap .case-outro {
+    font-size: 44px;
+    line-height: 52px;
+    letter-spacing: -0.968px;
+  }
+  .case-outro-wrap + .case-figma-thumb {
+    margin-top: 16px;
+  }
+
+  .case-figma-thumb {
+    margin: 16px 24px 48px;
+    border-radius: 48px;
+    padding: 32px;
+  }
+
+  /* Результаты A/B-теста: на 1024 — один ряд из 5 (case-results--desktop) */
+  .case-results--tablet { display: none; }
+  .case-results--desktop {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px;
+  }
+  .case-results--desktop .case-result-row {
+    background: #242424;
+    border-radius: 24px;
+    padding: 12px 16px;
+    justify-content: space-between;
+  }
+  .case-results--desktop .case-result-cell {
+    flex: 1 0 0;
+    min-width: 124px;
+    max-width: 124px;
+  }
+  .case-results--desktop .case-result-cell__label {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 124px;
+  }
+
+  /* Гипотезы (используется в fit-service): Figma 4×3 grid, card 216×340 */
+  .case-hypotheses {
+    margin: 16px 24px;
+    padding: 32px;
+    border-radius: 48px;
+  }
+  .case-hypothesis {
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 24px;
+    min-height: 340px;
+    padding: 14px 16px;
+  }
+  /* Карточка «рефы» (Проверка решения) на 1024 (Figma 1087:28609):
+     grid 4×2, плашки 16/24 шрифт padding 14×16, label h-96,
+     summary inline на 2-м ряду cols 3-4, h-152, radius 40 */
+  .case-hypotheses:has(.case-insights-grid) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+    padding: 24px;
+    border-radius: 40px;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insights-grid {
+    display: contents;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insight {
+    width: auto;
+    height: auto;
+    gap: 8px;
+  }
+  .case-hypotheses:has(.case-insights-grid) .case-insight-summary {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+    height: 152px;
+    margin-top: 0;
+    padding: 14px 16px;
+    max-width: none;
+  }
+  /* Плашки секунд: padding 14×16, шрифт 16/24 */
+  .case-insights-grid .case-insight__delta {
+    padding: 14px 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  /* Label: высота 96, padding 14×16, шрифт 16/24 */
+  .case-insights-grid .case-insight__label {
+    padding: 14px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    height: 96px;
+    min-height: 0;
+  }
+  /* Summary text: 16/24 */
+  .case-insight-summary__text {
+    font-size: 16px;
+    line-height: 24px;
   }
 
 }

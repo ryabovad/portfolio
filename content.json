@@ -26,6 +26,7 @@
       "company": "Nigma Software",
       "period": "январь 2025 → сейчас",
       "image": "images/projects/fit-service.webp",
+      "image1024": "images/projects/fit-service-1024.webp",
       "imageAlt": "Мокапы FIT SERVICE",
       "about": "FIT SERVICE — федеральная сеть из 346+ постгарантийных автосервисов. Через приложение записываются на ТО, смотрят историю обслуживания, пользуются программой лояльности.",
       "role": "Была единственным продуктовым дизайнером в команде. Участвовала в процессе с момента сбора требований до выкатки в прод. Презентовала и защищала решения.",
@@ -59,6 +60,7 @@
       "company": "fact.digital",
       "period": "ноябрь 2023 → декабрь 2024",
       "image": "images/projects/discomarket.webp",
+      "image1024": "images/projects/discomarket-1024.webp",
       "imageAlt": "Мокапы Дискомаркета",
       "about": "Дискомаркет — это маркетплейс и каталогизатор для любителей музыки на физических носителях — виниле, CD и кассетах.",
       "role": "Держала весь дизайн коммерческой части: от исследования до передачи в разработку и дизайн-ревью. Переосмыслила текущий UI и UX, создала бесшовный путь от покупки пластинки до её получения.",
@@ -69,26 +71,30 @@
     {
       "image": "images/shots/crypto.webp",
       "label": "Crypto App",
-      "size": "square"
+      "size": "square",
+      "tabletColumn": 1
     },
     {
       "shotId": "e-commerce",
       "video": "images/shots/ecommerce.mp4",
       "backing": "images/shots/e-commerce-backing.webp",
       "label": "E-commerce App",
-      "size": "tall"
+      "size": "tall",
+      "tabletColumn": 2
     },
     {
       "image": "images/shots/analytics.webp",
       "label": "Analytics Dashboard",
-      "size": "medium"
+      "size": "medium",
+      "tabletColumn": 2
     },
     {
       "shotId": "task-manager",
       "video": "images/shots/tasks.mov",
       "backing": "images/shots/task-manager-backing.webp",
       "label": "Task Manager",
-      "size": "short"
+      "size": "short",
+      "tabletColumn": 1
     }
   ]
 }
