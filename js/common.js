@@ -136,9 +136,23 @@
   // Экспортируем reInit для main.js (динамический контент рендерится после DOMContentLoaded)
   window.__revealReInit = initReveal;
 
+  /* ---------- Сайдбар на 1440+: подменяем контакты на CTA, когда #contacts в вьюпорте ---------- */
+  function initContactsCta() {
+    if (!('IntersectionObserver' in window)) return;
+    const target = document.getElementById('contacts');
+    if (!target) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        document.body.classList.toggle('contacts-visible', e.isIntersecting);
+      }
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    io.observe(target);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initMenu();
     initReveal();
     initHeaderHide();
+    initContactsCta();
   });
 })();

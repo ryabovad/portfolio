@@ -64,6 +64,7 @@
       <${tag} ${attr} aria-label="${esc(p.title)} — открыть кейс">
         <div class="project__cover">
           ${p.image ? `<picture>
+            ${p.image1440 ? `<source media="(min-width: 1440px)" srcset="${esc(p.image1440)}" />` : ''}
             ${p.image1024 ? `<source media="(min-width: 1024px)" srcset="${esc(p.image1024)}" />` : ''}
             <img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" loading="lazy" />
           </picture>` : ''}
