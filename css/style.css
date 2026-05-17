@@ -111,7 +111,7 @@ p, figure { margin: 0; }
 .user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .user__avatar {
@@ -1596,6 +1596,9 @@ body.menu-open { overflow: hidden; }
     max-width: 124px;
   }
 
+  /* h3--snug на 1024+ — pt-24 (по Figma 1024 и 1440) */
+  .case-h3--snug { padding-top: 24px; }
+
   /* Гипотезы (используется в fit-service): Figma 4×3 grid, card 216×340 */
   .case-hypotheses {
     margin: 16px 24px;
@@ -1915,6 +1918,131 @@ body.menu-open { overflow: hidden; }
     align-self: flex-start;
   }
   .contact-card__arrow img { width: 32px; height: 32px; }
+
+
+  /* ======================================================
+     КЕЙСЫ — 1440px
+     Figma node: 949:2798 (Дискомаркет)
+     На кейсах нет sidebar — отменяем grid главной, контент full-width
+     ====================================================== */
+
+  body:has(.case-header) {
+    display: block;
+  }
+  body:has(.case-header) main {
+    width: auto;
+    min-width: 0;
+  }
+
+  /* Шапка кейса: pb-28 pt-40 px-256. Без padding-bottom на .user из главной
+     (sidebar layout), чтобы header высота = 40 + 56 + 28 = 124 как в Figma */
+  .case-header {
+    padding: 40px 256px 28px;
+    padding-top: max(40px, env(safe-area-inset-top));
+  }
+  .case-header .user { padding-bottom: 0; }
+
+  /* Заголовок: pt-12 (header h=124 + 12 = 136 от верха, как в Figma) */
+  .case-title {
+    padding: 12px 256px 4px;
+    max-width: 1264px;
+  }
+
+  .case-meta {
+    padding: 16px 256px;
+    max-width: 1264px;
+  }
+  .case-meta__lead { max-width: 752px; }
+
+  /* h2 «Процесс» pt-24 (base) / «Финальные макеты» pt-56 в Figma */
+  .case-h2 {
+    padding: 24px 256px 4px;
+    max-width: 1264px;
+  }
+  /* На 1440 «Процесс» (case-h2--tight) — pt-24 как base. Не понижаем. */
+  .case-h2--tight { padding-top: 24px; }
+  .case-h2--lift  { padding-top: 56px; }
+
+  .case-h3 {
+    padding: 24px 256px 4px;
+    max-width: 1264px;
+  }
+  .case-h3--tight   { padding-top: 16px; }
+  /* --snug на 1440 — pt-24 (унаследовано от 1024 правила выше). */
+  .case-h3--bare    { padding-top: 8px; }
+  .case-h3--feature { padding-bottom: 8px; }
+
+  .case-p {
+    padding: 8px 256px;
+    max-width: 1264px;
+  }
+
+  .case-list {
+    padding: 8px 256px;
+    max-width: 1264px;
+  }
+
+  .case-callout {
+    padding: 8px 256px;
+    max-width: 1264px;
+  }
+  .case-callout__text { max-width: 752px; }
+
+  /* Медиа-карточки: бок 240, padding 32, radius 48 (как на 1024) */
+  .case-media {
+    margin: 32px 240px;
+    padding: 32px;
+    border-radius: 48px;
+    gap: 28px;
+  }
+  .case-media--p24 {
+    margin: 32px 240px;
+  }
+  .case-media--p12 {
+    margin: 16px 240px;
+  }
+
+  /* До / После */
+  .case-compare {
+    margin: 16px 240px;
+    padding: 32px;
+    border-radius: 48px;
+    gap: 24px;
+  }
+
+  /* Outro + кнопка — pt-80 в Figma, padding-x 256 */
+  .case-outro-wrap {
+    padding: 80px 256px 4px;
+  }
+
+  /* Figma thumb */
+  .case-figma-thumb {
+    margin: 16px 240px 48px;
+    border-radius: 48px;
+    padding: 32px;
+  }
+
+  /* «Решение» — гипотезы grid: на 1440 (fit-service) 3 cols × 4 rows
+     в карточке mx-240, p-32, radius-48 (как остальные медиа на 1440) */
+  .case-hypotheses {
+    margin: 16px 240px;
+    padding: 32px;
+    border-radius: 48px;
+  }
+  .case-hypotheses__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  /* Пилюля: Figma px-24 py-16, rows-248 (фикс высота) на 1440. На 1024 было 340. */
+  .case-hypothesis {
+    padding: 16px 24px;
+    min-height: 248px;
+  }
+
+  /* Результаты A/B-тест карточка: mx-240 (как остальные медиа), внутр карточка p-12/16 */
+  .case-results--desktop {
+    padding: 16px 240px;
+  }
 
 }
 
