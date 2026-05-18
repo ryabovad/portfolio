@@ -53,7 +53,8 @@
           }
         ]
       ],
-      "url": "cases/fit-service.html"
+      "url": "cases/fit-service.html",
+      "image1920": "images/projects/fit-service-1920.webp"
     },
     {
       "id": "discomarket",
@@ -65,7 +66,8 @@
       "imageAlt": "Мокапы Дискомаркета",
       "about": "Дискомаркет — это маркетплейс и каталогизатор для любителей музыки на физических носителях — виниле, CD и кассетах.",
       "role": "Держала весь дизайн коммерческой части: от исследования до передачи в разработку и дизайн-ревью. Переосмыслила текущий UI и UX, создала бесшовный путь от покупки пластинки до её получения.",
-      "url": "cases/discomarket.html"
+      "url": "cases/discomarket.html",
+      "image1920": "images/projects/discomarket-1920.webp"
     }
   ],
   "shots": [
@@ -87,7 +89,8 @@
       "image": "images/shots/analytics.webp",
       "label": "Analytics Dashboard",
       "size": "medium",
-      "tabletColumn": 2
+      "tabletColumn": 2,
+      "image1920": "images/shots/analytics-1920.webp"
     },
     {
       "shotId": "task-manager",
@@ -95,7 +98,8 @@
       "backing": "images/shots/task-manager-backing.webp",
       "label": "Task Manager",
       "size": "short",
-      "tabletColumn": 1
+      "tabletColumn": 1,
+      "video1920": "images/shots/tasks-1920.mp4"
     }
   ]
 }

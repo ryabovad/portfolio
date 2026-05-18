@@ -794,7 +794,7 @@ video.shot__img {
 .case-result-cell { flex: 1 0 0; min-width: 124px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
 .case-result-cell__label { font-size: 16px; line-height: 24px; font-weight: 600; max-width: 124px; }
 .case-result-cell__value { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 24px; padding-top: 4px; }
-.case-result-cell__delta { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--text-dim); letter-spacing: -0.07px; white-space: nowrap; }
+.case-result-cell__delta { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--text-dim); letter-spacing: -0.08px; white-space: nowrap; }
 
 /* Outro */
 .case-outro-wrap { display: block; }
@@ -1591,8 +1591,8 @@ body.menu-open { overflow: hidden; }
     max-width: 124px;
   }
   .case-results--desktop .case-result-cell__label {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 24px;
     max-width: 124px;
   }
 
@@ -1696,12 +1696,13 @@ body.menu-open { overflow: hidden; }
     padding-bottom: 24px;
   }
 
-  /* Якоря секций — посередине сайдбара */
+  /* Якоря секций — посередине сайдбара. gap-8 между «Проекты» и «UI шоты» */
   .header-nav-sections {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
     margin-top: 0;
+    gap: 8px;
   }
   .header-nav-sections .header-nav__link {
     height: auto;
@@ -1798,7 +1799,7 @@ body.menu-open { overflow: hidden; }
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 
@@ -2043,6 +2044,277 @@ body.menu-open { overflow: hidden; }
   .case-results--desktop {
     padding: 16px 240px;
   }
+
+}
+
+
+/* ============================================================
+   1920px — КЕЙСЫ: text px-496 (max-w 1744), media mx-480 p-40
+   Content area 928×752 та же что на 1440, увеличены боковые отступы.
+   Figma node: 953:4340 (Дискомаркет 1920)
+   ============================================================ */
+
+@media (min-width: 1920px) {
+
+  /* main на 1920 для case-страниц — full width (body:has(.case-header) уже отменяет grid из 1440) */
+
+  /* Шапка кейса: px-496 (как text), pb-28 pt-40 */
+  .case-header {
+    padding: 40px 496px 28px;
+    padding-top: max(40px, env(safe-area-inset-top));
+  }
+
+  /* Текстовые блоки: padding-x 496, max-width 1744 (= 496+752+496) */
+  .case-title {
+    padding: 12px 496px 4px;
+    max-width: 1744px;
+  }
+  .case-meta {
+    padding: 16px 496px;
+    max-width: 1744px;
+  }
+  .case-h2 {
+    padding: 24px 496px 4px;
+    max-width: 1744px;
+  }
+  .case-h2--tight { padding-top: 32px; }
+  .case-h2--lift  { padding-top: 64px; }
+
+  .case-h3 {
+    padding: 24px 496px 4px;
+    max-width: 1744px;
+  }
+  .case-h3--tight   { padding-top: 16px; }
+  .case-h3--bare    { padding-top: 8px; }
+  .case-h3--feature { padding-bottom: 8px; }
+
+  .case-p {
+    padding: 8px 496px;
+    max-width: 1744px;
+  }
+  .case-list {
+    padding: 8px 496px;
+    max-width: 1744px;
+  }
+  .case-callout {
+    padding: 8px 496px;
+    max-width: 1744px;
+  }
+
+  /* Медиа-карточки: mx-480, padding 40 внутри (на 1440 было 32), radius 48 */
+  .case-media {
+    margin: 32px 480px;
+    padding: 40px;
+    border-radius: 48px;
+    gap: 28px;
+  }
+  .case-media--p24 {
+    margin: 32px 480px;
+  }
+  .case-media--p12 {
+    margin: 16px 480px;
+    padding: 40px;
+  }
+
+  /* До/После compare: mx-480, padding 40 */
+  .case-compare {
+    margin: 16px 480px;
+    padding: 40px;
+    border-radius: 48px;
+    gap: 24px;
+  }
+
+  /* Outro pt-96 (на 1440 было 80) */
+  .case-outro-wrap {
+    padding: 96px 496px 4px;
+  }
+
+  /* Figma thumb */
+  .case-figma-thumb {
+    margin: 16px 480px 48px;
+    border-radius: 48px;
+    padding: 40px;
+  }
+
+  /* fit-service на 1920: «Решение»/«Проверка решения» grid (case-hypotheses) — padding 40 (1440=32) */
+  .case-hypotheses {
+    margin: 16px 480px;
+    padding: 40px;
+    border-radius: 48px;
+  }
+
+  /* Результаты A/B-тест карточка: mx-480 на 1920 (1440=240, 1024=24) */
+  .case-results--desktop {
+    padding: 16px 480px;
+  }
+  /* Внутр row на 1920: padding 24/32, radius 32 */
+  .case-results--desktop .case-result-row {
+    padding: 24px 32px;
+    border-radius: 32px;
+  }
+
+}
+
+
+/* ============================================================
+   1920px — главная: расширяется до 1502 main + flex-1 sidebar.
+   Hero/Projects/Shots/Watermark/Contacts получают увеличенные паддинги.
+   Figma node: 953:3434
+   ============================================================ */
+
+@media (min-width: 1920px) {
+
+  /* Body: sidebar flex-1 + main 1502 (увеличили с 1126) */
+  body {
+    grid-template-columns: 1fr 1502px;
+  }
+  main {
+    width: 1502px;
+  }
+
+  /* ---------- Hero card ---------- */
+  .hero-wrap {
+    padding: 24px 40px 12px;
+  }
+  /* Drop-shadow на card (Figma 953:3455 — обводка светящаяся 8px 25%) */
+  .hero {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
+  }
+  /* Title в одну строку на 1920 (Figma: «Продуктовый дизайнер» + flower на той же линии) */
+  .hero__title {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: nowrap;
+  }
+  .hero__title-line:first-child {
+    padding: 40px 10px 4px 44px;
+  }
+  .hero__title-row {
+    padding: 38px 32px 4px 0;
+    align-items: center;
+  }
+  /* Title-line внутри title-row ("дизайнер") — без padding, тогда title-row высота
+     задаётся самим текстом, а не вложенным padding. */
+  .hero__title-row .hero__title-line {
+    padding: 0;
+  }
+  /* Description: Figma w-[595] max-w-[720] — у нас Manrope wider на runtime, 595
+     даёт 3 строки. Оставляем max-width 720 чтобы текст лёг в 2 строки. */
+  .hero__description {
+    padding: 4px 44px 8px;
+    max-width: 720px;
+  }
+  .hero__tags {
+    padding: 24px 40px 40px;
+    gap: 8px;
+  }
+
+  /* ---------- Проекты ---------- */
+  .section--projects { padding: 0 40px; }
+  .project-wrap { padding: 12px 0; }
+  .project { aspect-ratio: 1454/752; }
+
+  /* Body 628 для обоих типов карточек */
+  .project-wrap:nth-child(odd) .project__body { flex: 0 0 628px; }
+  .project-wrap:nth-child(even) .project__body { flex: 0 0 628px; max-width: 628px; }
+  /* Disco (even) — title pt-48 (на 8 больше FIT), asymmetric pr-8 (arrow в той же flex-row).
+     max-width 280 чтобы «маркетплейса» переносилось на новую строку (как в Figma). */
+  .project-wrap:nth-child(even) .project__title {
+    padding: 48px 8px 8px 44px;
+    max-width: 324px;
+  }
+
+  /* На 1920 FIT (odd) — image-driven height (aspect-ratio фиксирован),
+     поэтому cover уже не absolute, а обычный image в потоке */
+  .project-wrap:nth-child(odd) .project__cover > picture,
+  .project-wrap:nth-child(odd) .project__cover > picture > img,
+  .project-wrap:nth-child(odd) .project__cover > img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project__title { padding: 40px 44px 8px; font-size: 32px; line-height: 40px; }
+  /* Даша: +2px сверху и снизу для названия компании и периода */
+  .project__meta  { padding: 2px 44px 8px; gap: 8px; }
+  .project__paragraph { padding: 2px 44px; }
+
+  .project__arrow {
+    width: 72px; height: 72px;
+    top: 44px; right: 44px;
+  }
+  .project__arrow img { width: 32px; height: 32px; }
+
+  /* Метрики: flex-1 — занимают всё оставшееся место body, justify-end прилипает к низу,
+     padding-bottom 44 — отступ от нижней метрики до низа карточки */
+  .project__metrics {
+    flex: 1;
+    padding: 44px;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  /* Метрики обновлены под Figma 1077:28385 (2026-05-18):
+     row w-480 h-120, justify-between, cell flex-1 без width restriction,
+     label max-w-140. */
+  .metrics-row,
+  .metrics-row:first-child,
+  .metrics-row:last-child,
+  .metrics-row:only-child {
+    width: 480px;
+    padding: 14px 24px;
+    gap: 0;
+    justify-content: space-between;
+    height: 120px;
+    min-height: 120px;
+  }
+  .metric {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+  .metric__label { max-width: 140px; }
+
+  /* ---------- UI шоты ---------- */
+  .shots-heading {
+    padding: 64px 56px 8px;
+  }
+  .shots-heading h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .shots-container {
+    padding: 12px 40px;
+    gap: 16px;
+  }
+
+  /* ---------- Watermark «Связаться со мной» ----------
+     В Figma 152px (для копии «Свяжитесь»), но у нас «Связаться» — длиннее в шрифте
+     NauryzRedKeds. 140px помещается в 1 строку при main 1502 + px-44. */
+  .contacts-watermark {
+    padding: 96px 44px 4px;
+    font-size: 140px;
+  }
+
+  /* Sidebar контакт-ссылки: на 1920 gap 8 между HH/email/Telegram (Figma 953:3444) */
+  .header-nav { gap: 8px; }
+
+  /* ---------- Контакт-карточки: h-286 r-40 padding 36 40 ---------- */
+  .contacts-list {
+    gap: 8px;
+    padding: 6px 40px 48px;
+  }
+  .contact-card {
+    height: 286px;
+    border-radius: 40px;
+    padding: 36px 40px;
+  }
+  .contact-card__label {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .contact-card__arrow img { width: 32px; height: 32px; }
 
 }
 

@@ -56,7 +56,7 @@
          Card имеет bg-#252525 + radius. Нижний padding 40 — отступ от низа content. */
       .case-compare {
         gap: 40px;
-        padding: 0 0 40px;
+        padding: 0 40px 40px;
       }
       .case-compare__block:first-child {
         flex: 0 0 320px;
@@ -67,6 +67,12 @@
         margin-top: 40px;
       }
       .case-compare__block:last-child .case-compare__media { max-width: 536px; }
+    }
+    @media (min-width: 1920px) {
+      /* На 1920 заголовок max-w 1744 (= 496+752+496), переопределяет узкий 1024-override */
+      .case-title { max-width: 1744px; }
+      /* На 1920 compare gap 24 (Figma 953:4587 — между До и После 24 px) */
+      .case-compare { gap: 24px; }
     }
   </style>
 </head>
@@ -204,9 +210,10 @@
       <div class="case-compare__block">
         <div class="case-compare__media">
           <picture>
+            <source media="(min-width: 1920px)" srcset="../images/cases/fit-service/after-1920.svg" />
             <source media="(min-width: 1440px)" srcset="../images/cases/fit-service/after-1440.svg" />
             <source media="(min-width: 1024px)" srcset="../images/cases/fit-service/after-1024.svg" />
-            <source media="(min-width: 768px)" srcset="../images/cases/fit-service/after-768.webp" />
+            <source media="(min-width: 768px)" srcset="../images/cases/fit-service/after-768.svg" />
             <img src="../images/cases/fit-service/after-375.svg" alt="Бонусный счёт — новый дизайн с пояснениями к гипотезам" loading="lazy" />
           </picture>
         </div>

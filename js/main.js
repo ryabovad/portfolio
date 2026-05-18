@@ -64,6 +64,7 @@
       <${tag} ${attr} aria-label="${esc(p.title)} — открыть кейс">
         <div class="project__cover">
           ${p.image ? `<picture>
+            ${p.image1920 ? `<source media="(min-width: 1920px)" srcset="${esc(p.image1920)}" />` : ''}
             ${p.image1440 ? `<source media="(min-width: 1440px)" srcset="${esc(p.image1440)}" />` : ''}
             ${p.image1024 ? `<source media="(min-width: 1024px)" srcset="${esc(p.image1024)}" />` : ''}
             <img src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" loading="lazy" />
@@ -107,15 +108,25 @@
 
     let media = '';
     if (hasVideo) {
+      const sources = [];
+      if (s.video1920) sources.push(`<source media="(min-width: 1920px)" src="${esc(s.video1920)}" />`);
+      sources.push(`<source src="${esc(s.video)}" />`);
       media = `<video
         class="${mediaClass}"
-        src="${esc(s.video)}"
         autoplay muted loop playsinline
         preload="metadata"
         aria-label="${esc(s.label)}"
-      ></video>`;
+      >${sources.join('')}</video>`;
     } else if (hasImage) {
-      media = `<img class="${mediaClass}" src="${esc(s.image)}" alt="${esc(s.label)}" loading="lazy" />`;
+      const hasImg1920 = !!(s.image1920 && s.image1920.trim());
+      if (hasImg1920) {
+        media = `<picture>
+          <source media="(min-width: 1920px)" srcset="${esc(s.image1920)}" />
+          <img class="${mediaClass}" src="${esc(s.image)}" alt="${esc(s.label)}" loading="lazy" />
+        </picture>`;
+      } else {
+        media = `<img class="${mediaClass}" src="${esc(s.image)}" alt="${esc(s.label)}" loading="lazy" />`;
+      }
     } else {
       media = `<div class="shot__placeholder"><span>Картинка «${esc(s.label)}» пока не загружена</span></div>`;
     }
