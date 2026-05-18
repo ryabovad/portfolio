@@ -385,7 +385,7 @@ body.menu-open .burger__icon--close { display: block; }
   position: absolute;
   top: 16px; right: 16px;
   width: 44px; height: 44px;
-  background: #2e2e2e;
+  background: var(--card);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -393,9 +393,9 @@ body.menu-open .burger__icon--close { display: block; }
   transition: background-color .15s ease;
 }
 @media (hover: hover) {
-  .project:hover .project__arrow { background: #404040; }
+  .project:hover .project__arrow { background: #303030; }
 }
-.project:active .project__arrow { background: #525252; }
+.project:active .project__arrow { background: #404040; }
 
 .project__body { display: flex; flex-direction: column; width: 100%; }
 
