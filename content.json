@@ -22,7 +22,7 @@
   "projects": [
     {
       "id": "fit-service",
-      "title": "Редизайн программы лояльности",
+      "title": "Fit Service: переработка программы лояльности",
       "company": "Nigma Software",
       "period": "январь 2025 → сейчас",
       "image": "images/projects/fit-service.webp",
@@ -58,9 +58,9 @@
     },
     {
       "id": "discomarket",
-      "title": "Редизайн маркетплейса",
+      "title": "Discomarket: редизайн маркетплейса",
       "company": "fact.digital",
-      "period": "ноябрь 2023 → декабрь 2024",
+      "period": "февраль 2023 → декабрь 2024",
       "image": "images/projects/discomarket.webp",
       "image1024": "images/projects/discomarket-1024.webp",
       "imageAlt": "Мокапы Дискомаркета",
