@@ -1867,20 +1867,20 @@ body.menu-open { overflow: hidden; }
     background: var(--chip);
     border-radius: var(--radius-chip);
   }
-  .metrics-row + .metrics-row {
-    min-height: 102px;
-    height: 102px;
-  }
-  /* Обе плашки метрик одинаковой высоты 102 */
+  /* Figma 1077:28363: обе плашки метрик одинаковой высоты 110 */
   .metrics-row,
   .metrics-row:first-child,
   .metrics-row:last-child,
   .metrics-row:only-child {
-    height: 102px;
-    min-height: 102px;
+    height: 110px;
+    min-height: 110px;
+  }
+  .metrics-row + .metrics-row {
+    height: 110px;
+    min-height: 110px;
   }
   .metric { min-width: 124px; }
-  .metric__label { max-width: none; }
+  .metric__label { max-width: 148px; }
   .metric__value { max-width: none; }
 
   /* ---------- UI шоты ---------- */
